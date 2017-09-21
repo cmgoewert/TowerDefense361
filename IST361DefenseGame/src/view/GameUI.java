@@ -28,7 +28,7 @@ public class GameUI extends JFrame{
     }
   
     private void initComponenets() {
-        theGameBoard = new GameBoardPanel();
+        theGameBoard = new GameBoardPanel(gameCtrl);
 
         this.add(theGameBoard);
     }
