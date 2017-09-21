@@ -5,6 +5,7 @@
  */
 package ist361defensegame;
 
+import controller.GameController;
 import controller.NavigationController;
 
 /**
