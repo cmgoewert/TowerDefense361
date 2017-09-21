@@ -14,7 +14,7 @@ import javax.swing.JFrame;
  */
 public class GameUI extends JFrame{
     GameController gameCtrl;
-    
+    private GameBoardPanel theGameBoard;
     
     public GameUI (GameController gameCtrl) {
         this.gameCtrl = gameCtrl;
@@ -23,5 +23,13 @@ public class GameUI extends JFrame{
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        
+        initComponenets();
+    }
+  
+    private void initComponenets() {
+        theGameBoard = new GameBoardPanel(gameCtrl);
+
+        this.add(theGameBoard);
     }
 }
