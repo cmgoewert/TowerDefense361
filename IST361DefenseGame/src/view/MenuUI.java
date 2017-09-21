@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 /**
@@ -26,34 +27,47 @@ public class MenuUI extends JFrame implements ActionListener{
     private JLabel difficultyLabel;
     private ArrayList<JButton> difficulty;
     
-    private JLabel highScore;
+    private JLabel highScoreLabel;
+    
+    private JPanel panel;
     
     public MenuUI (NavigationController navCtrl) {
-        this.navCtrl = navCtrl;
-        this.setVisible(true);
+        navCtrl = navCtrl;
         this.setBounds(0, 0, 750, 550);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
-        this.nameLabel = new JLabel("Please enter your name: ");
-        this.nameField = new JTextField("");
+        nameLabel = new JLabel("Please enter your name: ");
+        nameField = new JTextField("");
         
-        this.difficultyLabel = new JLabel("Select a difficulty.");
-        this.difficulty = new ArrayList<>();
+        difficultyLabel = new JLabel("Select a difficulty.");
+        difficulty = new ArrayList<>();
         difficulty.add(new JButton("easy"));
         difficulty.add(new JButton("medium"));
-        difficulty.add(new JButton("hard"));
+        difficulty.add(new JButton("hard"));    
         
         for (JButton button : difficulty) {
             button.addActionListener(this);
         }
         
-        this.highScore = new JLabel("High score: ");
+        highScoreLabel = new JLabel("High score: ");
+        
+        panel = new JPanel();
+        panel.add(nameLabel);
+        panel.add(nameField);
+        panel.add(difficultyLabel);
+        for (JButton button : difficulty) {
+            panel.add(button);
+        }
+        panel.add(highScoreLabel);
+        panel.setVisible(true);
+        this.add(panel);
+        this.setVisible(true);
     }
     
     public void setHighScore(String score) {
-        highScore.setText("High score : " + score);
+        highScoreLabel.setText("High score : " + score);
     }
 
     @Override
