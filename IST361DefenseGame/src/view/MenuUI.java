@@ -14,7 +14,6 @@ import javax.swing.JFrame;
  */
 public class MenuUI extends JFrame{
     private NavigationController navCtrl;
-    private GameBoardPanel theGameBoard;
     
     public MenuUI (NavigationController navCtrl) {
         this.navCtrl = navCtrl;
@@ -24,12 +23,5 @@ public class MenuUI extends JFrame{
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
-        initComponenets();
-    }
-    
-    private void initComponenets(){
-        theGameBoard = new GameBoardPanel();
-        
-        this.add(theGameBoard);
     }
 }
