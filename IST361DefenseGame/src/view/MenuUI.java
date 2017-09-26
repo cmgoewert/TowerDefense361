@@ -6,6 +6,9 @@
 package view;
 
 import controller.NavigationController;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -19,7 +22,7 @@ import javax.swing.JTextField;
  *
  * @author cmg5831
  */
-public class MenuUI extends JFrame implements ActionListener{
+public class MenuUI extends JPanel implements ActionListener{
     private NavigationController navCtrl;
     private JLabel nameLabel;
     private JTextField nameField;
@@ -29,14 +32,8 @@ public class MenuUI extends JFrame implements ActionListener{
     
     private JLabel highScoreLabel;
     
-    private JPanel panel;
-    
     public MenuUI (NavigationController navCtrl) {
         this.navCtrl = navCtrl;
-        this.setBounds(0, 0, 750, 550);
-        this.setResizable(false);
-        this.setLocationRelativeTo(null);
-        this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         nameLabel = new JLabel("Please enter your name: ");
         nameField = new JTextField("");
@@ -53,17 +50,15 @@ public class MenuUI extends JFrame implements ActionListener{
         
         highScoreLabel = new JLabel("High score: ");
         
-        panel = new JPanel();
-        panel.add(nameLabel);
-        panel.add(nameField);
-        panel.add(difficultyLabel);
+        add(nameLabel);
+        add(nameField);
+        add(difficultyLabel);
         for (JButton button : difficulty) {
-            panel.add(button);
+            add(button);
         }
-        panel.add(highScoreLabel);
-        panel.setVisible(true);
-        this.add(panel);
-        this.setVisible(true);
+        add(highScoreLabel);
+        
+        setVisible(true);
     }
     
     public void setHighScore(String score) {
@@ -85,5 +80,12 @@ public class MenuUI extends JFrame implements ActionListener{
         }
         
         //when diff passed to navController, navController should start game
+    }
+    
+    @Override
+    public void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        Image background = Toolkit.getDefaultToolkit().getImage("images/background.jpg");
+        g.drawImage(background, 0, 0, this);
     }
 }

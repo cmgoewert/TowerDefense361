@@ -5,6 +5,7 @@
  */
 package controller;
 
+import view.MainFrame;
 import view.MenuUI;
 
 /**
@@ -12,10 +13,10 @@ import view.MenuUI;
  * @author cmg5831
  */
 public class NavigationController {
-    private MenuUI theMainMenu;
+    private MainFrame theMainMenu;
     
     public NavigationController(){
-        theMainMenu = new MenuUI(this);
+        theMainMenu = new MainFrame(this);
     }
     
 }
