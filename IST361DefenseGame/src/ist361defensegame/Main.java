@@ -5,7 +5,6 @@
  */
 package ist361defensegame;
 
-import controller.GameController;
 import controller.NavigationController;
 
 /**
@@ -19,7 +18,7 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        GameController navCtrl = new GameController();
+        NavigationController navCtrl = new NavigationController();
     }
     
 }

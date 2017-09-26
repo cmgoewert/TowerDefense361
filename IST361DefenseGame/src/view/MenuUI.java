@@ -32,7 +32,7 @@ public class MenuUI extends JFrame implements ActionListener{
     private JPanel panel;
     
     public MenuUI (NavigationController navCtrl) {
-        navCtrl = navCtrl;
+        this.navCtrl = navCtrl;
         this.setBounds(0, 0, 750, 550);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
