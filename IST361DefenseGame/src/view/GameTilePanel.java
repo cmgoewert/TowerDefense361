@@ -6,6 +6,7 @@
 package view;
 
 import controller.GameController;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -15,8 +16,22 @@ import javax.swing.JPanel;
  */
 public class GameTilePanel extends JLabel{
     GameController gameCtrl;
+    boolean path;
     
-    public GameTilePanel(GameController theCtrl){
+    
+    public GameTilePanel(GameController theCtrl, boolean path){
         gameCtrl = theCtrl;
+        this.path = path;
+        initComponenets();
+    }
+    
+    private void initComponenets() {
+        if (!path) {
+            ImageIcon icon = new ImageIcon("GameTile.png");
+            this.setIcon(icon);
+        } else {
+            this.setText("path");
+        }
+
     }
 }

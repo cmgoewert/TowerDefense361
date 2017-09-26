@@ -36,5 +36,7 @@ public class GameUI extends JFrame{
         this.setLayout(new BorderLayout());
         this.add(infoPanel, BorderLayout.EAST);
         this.add(theGameBoard, BorderLayout.CENTER);
+        this.repaint();
+        this.revalidate();
     }
 }
