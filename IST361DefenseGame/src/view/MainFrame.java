@@ -17,7 +17,7 @@ public class MainFrame extends JFrame{
     public MainFrame (NavigationController navController) {
         this.navController = navController;
         MenuUI menuUI = new MenuUI(navController);
-        this.setBounds(0, 0, 750, 550);
+        this.setBounds(0, 0, 1050, 750);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);

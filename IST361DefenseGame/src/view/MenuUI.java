@@ -6,6 +6,7 @@
 package view;
 
 import controller.NavigationController;
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -13,7 +14,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -35,29 +35,36 @@ public class MenuUI extends JPanel implements ActionListener{
     public MenuUI (NavigationController navCtrl) {
         this.navCtrl = navCtrl;
         
+        setLayout(null);
+        
         nameLabel = new JLabel("Please enter your name: ");
+        nameLabel.setForeground(Color.WHITE);
         nameField = new JTextField("");
+        nameField.setColumns(12);
         
         difficultyLabel = new JLabel("Select a difficulty.");
+        difficultyLabel.setForeground(Color.WHITE);
         difficulty = new ArrayList<>();
         difficulty.add(new JButton("easy"));
         difficulty.add(new JButton("medium"));
         difficulty.add(new JButton("hard"));    
         
-        for (JButton button : difficulty) {
-            button.addActionListener(this);
-        }
-        
-        highScoreLabel = new JLabel("High score: ");
+        highScoreLabel = new JLabel("");
+        highScoreLabel.setForeground(Color.WHITE);
         
         add(nameLabel);
         add(nameField);
         add(difficultyLabel);
+        //TODO: implement bounds
+        //nameLabel.setBounds(50, 700, 30, 20);
+        //nameField.setBounds(80, 700, 30, 20);
         for (JButton button : difficulty) {
+            button.addActionListener(this);
+            //button.setBounds(50, 800, 100, 50);
             add(button);
         }
         add(highScoreLabel);
-        
+       
         setVisible(true);
     }
     
