@@ -6,6 +6,7 @@
 package view;
 
 import controller.GameController;
+import java.awt.BorderLayout;
 import javax.swing.JFrame;
 
 /**
@@ -32,7 +33,8 @@ public class GameUI extends JFrame{
         theGameBoard = new GameBoardPanel(gameCtrl);
         infoPanel = new InfoPanel();
         
-        //this.add(infoPanel);
-        this.add(theGameBoard);
+        this.setLayout(new BorderLayout());
+        this.add(infoPanel, BorderLayout.EAST);
+        this.add(theGameBoard, BorderLayout.CENTER);
     }
 }
