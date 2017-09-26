@@ -29,6 +29,20 @@ public class GameBoardPanel extends JPanel{
     private void initComponents(){
         theLayout = new GridLayout(12,12);
         this.setLayout(theLayout);
+   
+        for (int i = 0; i < theLayout.getColumns() * theLayout.getRows(); i++) {
+            if (i % 12 == 3 || i % 12 == 4) {
+                GameTilePanel theLabel = new GameTilePanel(parentCtrl, true);
+                theTiles.add(theLabel);
+                this.add(theLabel);
+            } else {
+                GameTilePanel theLabel = new GameTilePanel(parentCtrl, false);
+                theTiles.add(theLabel);
+                this.add(theLabel);
+            }
+
+
+        }
     }
     
     //        for(int i = 0; i < 144; i++){
