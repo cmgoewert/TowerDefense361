@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 public class GameUI extends JFrame{
     GameController gameCtrl;
     private GameBoardPanel theGameBoard;
+    private InfoPanel infoPanel;
     
     public GameUI (GameController gameCtrl) {
         this.gameCtrl = gameCtrl;
@@ -29,7 +30,9 @@ public class GameUI extends JFrame{
   
     private void initComponenets() {
         theGameBoard = new GameBoardPanel(gameCtrl);
-
+        infoPanel = new InfoPanel();
+        
+        //this.add(infoPanel);
         this.add(theGameBoard);
     }
 }
