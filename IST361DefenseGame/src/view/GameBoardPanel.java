@@ -47,6 +47,7 @@ public class GameBoardPanel extends JPanel{
     
     private void initComponents(){
         JPanel gamePanel = new JPanel();
+        setBackground(Color.cyan);
         add(gamePanel);
         theLayout = new GridLayout(12,12);
         gamePanel.setLayout(theLayout);      
