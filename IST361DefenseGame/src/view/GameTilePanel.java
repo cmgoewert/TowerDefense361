@@ -6,6 +6,12 @@
 package view;
 
 import controller.GameController;
+import java.awt.Image;
+import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -27,11 +33,21 @@ public class GameTilePanel extends JLabel{
     
     private void initComponenets() {
         if (!path) {
-            ImageIcon icon = new ImageIcon("GameTile.png");
-            this.setIcon(icon);
+            ImageIcon imageIcon = new ImageIcon("GameTile2.png");
+            
+            Image image = imageIcon.getImage();
+            Image newimg = image.getScaledInstance(35, 35,  java.awt.Image.SCALE_SMOOTH);
+            imageIcon = new ImageIcon(newimg);
+            this.setIcon(imageIcon);
         } else {
-            this.setText("path");
+            this.setText("");
         }
 
     }
+
+    void addActionListener(ActionListener actionListener) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+       
 }
