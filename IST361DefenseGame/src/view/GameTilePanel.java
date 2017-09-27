@@ -23,6 +23,7 @@ import javax.swing.JPanel;
 public class GameTilePanel extends JLabel{
     GameController gameCtrl;
     boolean path;
+    boolean hasTower;
     
     
     public GameTilePanel(GameController theCtrl, boolean path){
@@ -42,11 +43,21 @@ public class GameTilePanel extends JLabel{
         } else {
             this.setText("");
         }
+        
+        hasTower = false;
 
     }
 
     void addActionListener(ActionListener actionListener) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public boolean getHasTower() {
+        return hasTower;
+    }
+    
+    public void setHasTower(){
+        hasTower = true;
     }
     
        

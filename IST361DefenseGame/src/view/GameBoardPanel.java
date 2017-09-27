@@ -17,6 +17,13 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.BorderFactory;
 
 
 /**
@@ -27,7 +34,7 @@ public class GameBoardPanel extends JPanel{
     ArrayList<GameTilePanel> theTiles = new ArrayList<GameTilePanel>();
     GameController parentCtrl;
     GridLayout theLayout;
-    JPanel gamePanel;
+    //JPanel gamePanel;
     boolean isPresent = false;
     boolean doesExist = false;
     int countThis = 0;
@@ -46,40 +53,63 @@ public class GameBoardPanel extends JPanel{
     }
     
     private void initComponents(){
-        JPanel gamePanel = new JPanel();
-        setBackground(Color.cyan);
-        add(gamePanel);
-        theLayout = new GridLayout(12,12);
-        gamePanel.setLayout(theLayout);      
+        this.setBorder(BorderFactory.createRaisedBevelBorder());
+//        JLabel background = new JLabel(new ImageIcon("pathBackground.png"));
+//        this.setContentPane(background);
+        theLayout = new GridLayout(12, 12);
+        this.setLayout(theLayout);
         JLabel[][] boardSquares = new JLabel[12][12];
         int counter = 0;
         for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 12; j++) {               
+            for (int j = 0; j < 12; j++) {
                 isPresent = exists(counter);
                 counter++;
                 if (isPresent) {
                     boardSquares[i][j] = new GameTilePanel(parentCtrl, true);
-                } 
-                else {
+                } else {
                     final GameTilePanel theTile = new GameTilePanel(parentCtrl, false);
                     boardSquares[i][j] = new GameTilePanel(parentCtrl, false);
                     boardSquares[i][j] = theTile;
                     boardSquares[i][j].addMouseListener(new MouseAdapter() {
-                    @Override
-                    public void mouseClicked(MouseEvent e) {
-                        ImageIcon imageIcon = new ImageIcon("alien2.png");          
-                        Image image = imageIcon.getImage();
-                        Image newimg = image.getScaledInstance(35, 35,  java.awt.Image.SCALE_SMOOTH);
-                        imageIcon = new ImageIcon(newimg);
-                        theTile.setIcon(imageIcon);
-                    }
-            });
+                        @Override
+                        public void mouseClicked(MouseEvent e) {
+                            if (!theTile.getHasTower()) {
+                                ImageIcon imageIcon = new ImageIcon("tileWithCannon.png");
+                                Image image = imageIcon.getImage();
+                                Image newimg = image.getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH);
+                                imageIcon = new ImageIcon(newimg);
+                                theTile.setIcon(imageIcon);
+                                theTile.setHasTower();
+                            } else {
+                                System.out.println("already has a tower!");
+                            }
+
+                        }
+                    });
                 }
-                
-                    gamePanel.add(boardSquares[i][j]);
+                this.add(boardSquares[i][j]);
             }
-        }        
+        }
+        this.repaint();
     }
+
+    public void paintComponent(Graphics page) {
+        BufferedImage img = null;
+        try {
+            img = ImageIO.read(new File("pathBackground3.png"));
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        super.paintComponent(page);
+        page.drawImage(img, 0, 0, null);
+    }
+    
+//    @Override
+//  protected void paintComponent(Graphics g) {
+//    ImageIcon icon = new ImageIcon("pathBackground.png"); 
+//    super.paintComponent(g);
+//        g.drawImage(icon, 0, 0, null);
+//}
     
     private static boolean exists(int count){
         boolean exists = false;
