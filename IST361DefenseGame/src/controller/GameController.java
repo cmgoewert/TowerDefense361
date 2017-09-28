@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import view.GameUI;
+import view.InfoPanel;
 
 /**
  *
@@ -17,9 +18,11 @@ import view.GameUI;
  */
 public class GameController {
     private GameUI theGameUI;
+    private InfoPanel infoPanel;
     
     public GameController(){
         theGameUI = new GameUI(this);
+        infoPanel = new InfoPanel();
     }
     
     //TODO: Logic for when it increases when but is killed, decreses when bug is
@@ -28,7 +31,7 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            infoPanel.getScoreLabel().setText("Test"); //new Score on action
         }
     
     }
@@ -38,7 +41,7 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            infoPanel.getHealthLabel().setText("Test");
         }
     
     }
@@ -49,7 +52,7 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            infoPanel.getMoneyLabel().setText("Test");
         }
     
     }
