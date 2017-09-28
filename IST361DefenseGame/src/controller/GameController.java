@@ -61,7 +61,24 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            boolean shortRangeSelected = infoPanel.getShortRangeButton();
+            boolean medRangeSelected = infoPanel.getMedRangeButton();
+            boolean longRangeSelected = infoPanel.getLongRangeButton();
+            if(shortRangeSelected){
+                medRangeSelected=false; 
+                longRangeSelected=false;
+                //set tower1 image to be place
+            }
+            if (medRangeSelected){
+                shortRangeSelected=false;
+                longRangeSelected=false;
+                //set tower2 image to be placed
+            }
+            if (longRangeSelected){
+                shortRangeSelected=false;
+                medRangeSelected=false;
+                //set tower3 image to be placed
+            }
         }
     
     }
