@@ -19,4 +19,8 @@ public class NavigationController {
         theMainMenu = new MainFrame(this);
     }
     
+    public void startGame(){
+        GameController gc = new GameController();
+    }
+    
 }
