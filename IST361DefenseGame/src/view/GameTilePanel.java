@@ -37,7 +37,7 @@ public class GameTilePanel extends JLabel{
             ImageIcon imageIcon = new ImageIcon("GameTile2.png");
             
             Image image = imageIcon.getImage();
-            Image newimg = image.getScaledInstance(35, 35,  java.awt.Image.SCALE_SMOOTH);
+            Image newimg = image.getScaledInstance(50, 50,  java.awt.Image.SCALE_SMOOTH);
             imageIcon = new ImageIcon(newimg);
             this.setIcon(imageIcon);
         } else {

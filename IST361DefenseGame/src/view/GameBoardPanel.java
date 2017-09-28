@@ -24,19 +24,23 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.BorderFactory;
+import javax.swing.Timer;
 
 
 /**
  *
  * @author cmg5831
  */
-public class GameBoardPanel extends JPanel{
+public class GameBoardPanel extends JPanel  implements ActionListener{
     ArrayList<GameTilePanel> theTiles = new ArrayList<GameTilePanel>();
     GameController parentCtrl;
     GridLayout theLayout;
+    BufferedImage enemy1;
     //JPanel gamePanel;
     boolean isPresent = false;
     boolean doesExist = false;
+    private Timer gameTimer;
+    private Timer enemyTimer;
     int countThis = 0;
     
     static int pathTiles[]={3,4,15,16,27,28,29,30,31,32,33,39,40,41,42,43,44,45,56,57,68,69,80,81,92,93,96,97,98,99,100,101,102,103,104,105,108,109,110,111,112,113,114,115,116,117};
@@ -76,7 +80,7 @@ public class GameBoardPanel extends JPanel{
                             if (!theTile.getHasTower()) {
                                 ImageIcon imageIcon = new ImageIcon("tileWithCannon.png");
                                 Image image = imageIcon.getImage();
-                                Image newimg = image.getScaledInstance(35, 35, java.awt.Image.SCALE_SMOOTH);
+                                Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
                                 imageIcon = new ImageIcon(newimg);
                                 theTile.setIcon(imageIcon);
                                 theTile.setHasTower();
@@ -90,18 +94,53 @@ public class GameBoardPanel extends JPanel{
                 this.add(boardSquares[i][j]);
             }
         }
+        gameTimer = new Timer(1000 / 50, this);
+        
+        enemyTimer = new Timer(1000 / 50, this);
+        enemyTimer.setDelay(4000);
+        
+        
+        
         this.repaint();
     }
 
     public void paintComponent(Graphics page) {
         BufferedImage img = null;
+        Image enemyScaled = null;
+        
         try {
+            enemy1 = ImageIO.read(new File("alien2.png"));
+            enemyScaled = enemy1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+            
             img = ImageIO.read(new File("pathBackground3.png"));
+            //img = ImageIO.read(new File("alien2.png"));
         } catch (IOException ex) {
             Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         super.paintComponent(page);
+        
         page.drawImage(img, 0, 0, null);
+        page.drawImage(enemyScaled, 200, 50, null);
+    }
+    
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        Object o = e.getSource();
+
+        //The game world updates when the GameTimer event fires
+        if (o == gameTimer) {
+            this.repaint();
+            //physics.update();   
+        }
+        
+        Object i = e.getSource();
+        
+         // TODO: When the Enemy's timer fires, create a new Enemy that will persue the player!
+        if(i == enemyTimer){
+//            enemy =  new Enemy();
+//            this.repaint();
+//            physics.update();
+        }  
     }
     
 //    @Override
