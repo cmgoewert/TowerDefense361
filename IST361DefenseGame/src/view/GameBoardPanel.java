@@ -6,6 +6,7 @@
 package view;
 
 import controller.GameController;
+import ist361defensegame.Enemy;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -33,6 +34,7 @@ import javax.swing.Timer;
  */
 public class GameBoardPanel extends JPanel  implements ActionListener{
     ArrayList<GameTilePanel> theTiles = new ArrayList<GameTilePanel>();
+    ArrayList<Enemy> enemies;
     GameController parentCtrl;
     GridLayout theLayout;
     BufferedImage enemy1;
@@ -58,6 +60,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     
     private void initComponents(){
         this.setBorder(BorderFactory.createRaisedBevelBorder());
+        enemies = new ArrayList<Enemy>();
+        enemies.add(new Enemy(200,0,50,50,0));
 //        JLabel background = new JLabel(new ImageIcon("pathBackground.png"));
 //        this.setContentPane(background);
         theLayout = new GridLayout(12, 12);
@@ -99,7 +103,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         enemyTimer = new Timer(1000 / 50, this);
         enemyTimer.setDelay(4000);
         
-        
+        gameTimer.start();
         
         this.repaint();
     }
@@ -112,15 +116,20 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             enemy1 = ImageIO.read(new File("alien2.png"));
             enemyScaled = enemy1.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
             
-            img = ImageIO.read(new File("pathBackground3.png"));
+            img = ImageIO.read(new File("pathBackground5.png"));
             //img = ImageIO.read(new File("alien2.png"));
         } catch (IOException ex) {
             Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
+ 
+
+        
         super.paintComponent(page);
         
         page.drawImage(img, 0, 0, null);
-        page.drawImage(enemyScaled, 200, 50, null);
+        //page.drawImage(enemyScaled, 200, 50, null);
+        enemies.get(0).update();
+        enemies.get(0).draw(page);
     }
     
     @Override
@@ -129,6 +138,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
 
         //The game world updates when the GameTimer event fires
         if (o == gameTimer) {
+            for(Enemy enemy : enemies){
+                enemy.update();
+            }
             this.repaint();
             //physics.update();   
         }
@@ -143,13 +155,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         }  
     }
     
-//    @Override
-//  protected void paintComponent(Graphics g) {
-//    ImageIcon icon = new ImageIcon("pathBackground.png"); 
-//    super.paintComponent(g);
-//        g.drawImage(icon, 0, 0, null);
-//}
-    
     private static boolean exists(int count){
         boolean exists = false;
         int check = count;       
@@ -160,52 +165,4 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         }       
         return exists;
     }     
-        /*
-        for (int i = 0; i < theLayout.getColumns() * theLayout.getRows(); i++) {
-            isPresent = false;
-                for(int j = 0; j < pathTiles.length; j++){
-                
-                    if(i == pathTiles[j])
-                    {
-                        isPresent = true;
-                    }
-                    
-                }
-                    if (isPresent) {
-                        GameTilePanel theLabel = new GameTilePanel(parentCtrl, true);
-                        theTiles.add(theLabel);
-                        this.add(theLabel);
-                    } else {
-                        GameTilePanel theLabel = new GameTilePanel(parentCtrl, false);
-                        
-                        theLabel.addActionListener(new java.awt.event.ActionListener(){
-                        public void actionPerformed(java.awt.event.ActionEvent evt){
-                            gameTileClicked(evt, theLabel);
-                        }
-                        });
-                        theTiles.add(theLabel);
-                        this.add(theLabel);
-                    }
-                
-            }
-        }    */
-/*
-        private void gameTileClicked(java.awt.event.ActionEvent evt, GameTilePanel thePanel){
-            GameTilePanel theLabel = thePanel;
-            ImageIcon icon = new ImageIcon("Tower_1.gif");
-            theLabel.setIcon(icon);
-            //ContactUI.this.c_control.getContactHelpWindow();
-        }   */ 
-    
-    
-    //        for(int i = 0; i < 144; i++){
-//            JPanel thePanel = new JPanel();
-//            if(i%2== 1){
-//                thePanel.setBackground(Color.blue);
-//            } else {
-//                thePanel.setBackground(Color.black);
-//            }
-//           
-//            this.add(thePanel);
-//        }
 }

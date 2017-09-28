@@ -8,9 +8,11 @@
             <file>file:/X:/My%20Documents/NetBeansProjects/TowerDefense361/IST361DefenseGame/src/view/GameBoardPanel.java</file>
             <file>file:/X:/My%20Documents/NetBeansProjects/TowerDefense361/IST361DefenseGame/src/view/InfoPanel.java</file>
             <file>file:/X:/My%20Documents/NetBeansProjects/TowerDefense361/IST361DefenseGame/src/controller/NavigationController.java</file>
+            <file>file:/X:/My%20Documents/NetBeansProjects/TowerDefense361/IST361DefenseGame/src/ist361defensegame/Enemy.java</file>
             <file>file:/X:/My%20Documents/NetBeansProjects/TowerDefense361/IST361DefenseGame/src/controller/GameController.java</file>
             <file>file:/X:/My%20Documents/NetBeansProjects/TowerDefense361/IST361DefenseGame/src/ist361defensegame/Main.java</file>
             <file>file:/X:/My%20Documents/NetBeansProjects/TowerDefense361/IST361DefenseGame/src/view/MenuUI.java</file>
+            <file>file:/X:/My%20Documents/NetBeansProjects/TowerDefense361/IST361DefenseGame/src/ist361defensegame/MovingGamePiece.java</file>
         </group>
     </open-files>
 </project-private>
