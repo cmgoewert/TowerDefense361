@@ -61,9 +61,10 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            boolean shortRangeSelected = infoPanel.getShortRangeButton();
-            boolean medRangeSelected = infoPanel.getMedRangeButton();
-            boolean longRangeSelected = infoPanel.getLongRangeButton();
+            //try not to put things in master that have clear errors
+            boolean shortRangeSelected = false;//infoPanel.getShortRangeButton();
+            boolean medRangeSelected = false;//infoPanel.getMedRangeButton();
+            boolean longRangeSelected = false;//infoPanel.getLongRangeButton();
             if(shortRangeSelected){
                 medRangeSelected=false; 
                 longRangeSelected=false;
