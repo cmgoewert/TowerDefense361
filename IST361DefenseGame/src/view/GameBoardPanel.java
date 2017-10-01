@@ -8,6 +8,7 @@ package view;
 import controller.GameController;
 import ist361defensegame.Enemy;
 import ist361defensegame.Projectile;
+import ist361defensegame.Tower;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -47,6 +48,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     private Timer enemyTimer;
     private Timer projTimer;
     int countThis = 0;
+    Tower tower;
+    //hello
     
     //Tower and Projectile Stuff
     ArrayList<Point> towerLocations = new ArrayList<>();
