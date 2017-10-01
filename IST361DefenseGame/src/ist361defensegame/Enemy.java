@@ -71,7 +71,6 @@ public class Enemy extends MovingGamePiece{
 
     @Override
     public void draw(Graphics g) {
-        //System.out.println(x + " " + y);
        
         g.drawImage(enemyScaled, x, y, null);
     }
