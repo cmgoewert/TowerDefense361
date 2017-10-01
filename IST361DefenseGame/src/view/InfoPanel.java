@@ -48,9 +48,9 @@ public class InfoPanel extends JPanel{
         setMoneyLabel(new JLabel("Money: "));
         setHealthLabel(new JLabel("Health: "));
         setDifficultyLabel(new JLabel("Difficulty: "));
-        setTower1Label(new JLabel("Homework Tosser: "));
-        setTower2Label(new JLabel("Eraser Cannon: "));
-        setTower3Label(new JLabel("Paper Football Launcher: "));
+        setTower1Label(new JLabel("Tower 1: "));
+        setTower2Label(new JLabel("Tower 2: "));
+        setTower3Label(new JLabel("Tower 3: "));
         setTower1Button(new JButton("Tower1"));
         setTower2Button(new JButton("Tower2"));
         setTower3Button(new JButton("Tower3"));

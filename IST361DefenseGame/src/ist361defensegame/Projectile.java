@@ -39,12 +39,13 @@ public class Projectile extends MovingGamePiece {
     }
     @Override
     public void update() {
-            double xDiff = x - 500;
-            double yDiff = y - 500;
-            double sigma = Math.atan2(xDiff, yDiff);
-            double moveMag = Math.min(100, Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2)));
-            x = (int) (x - (moveMag * Math.cos(sigma)));
-            y = (int) (y - (moveMag * Math.sin(sigma)));
+//            double xDiff = x - 500;
+//            double yDiff = y - 500;
+//            double sigma = Math.atan2(xDiff, yDiff);
+//            double moveMag = Math.min(100, Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2)));
+//            x = (int) (x - (moveMag * Math.cos(sigma)));
+//            y = (int) (y - (moveMag * Math.sin(sigma)));
+
     }
 
     @Override
