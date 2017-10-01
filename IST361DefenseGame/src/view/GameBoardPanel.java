@@ -8,6 +8,7 @@ package view;
 import controller.GameController;
 import ist361defensegame.Enemy;
 import ist361defensegame.Projectile;
+import ist361defensegame.Tower;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     private Timer enemyTimer;
     private Timer projTimer;
     int countThis = 0;
+    Tower tower;
     
     //Tower and Projectile Stuff
     ArrayList<Point> towerLocations = new ArrayList<>();
@@ -92,8 +94,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                     boardSquares[i][j].addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                            if (!theTile.getHasTower()) {
-                                ImageIcon imageIcon = new ImageIcon("tileWithCannon.png");
+                           if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getHomeworkTosser()) {
+                                ImageIcon imageIcon = new ImageIcon("Tower_1.gif");
                                 Image image = imageIcon.getImage();
                                 Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
                                 imageIcon = new ImageIcon(newimg);
@@ -104,7 +106,33 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                                 towerLocations.add(towerLoc);
                                 System.out.println(towerLocations);
 
-                            } else {
+                            } 
+                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getEraserCannon()) {
+                                ImageIcon imageIcon = new ImageIcon("Tower_2.gif");
+                                Image image = imageIcon.getImage();
+                                Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+                                imageIcon = new ImageIcon(newimg);
+                                theTile.setIcon(imageIcon);
+                                theTile.setHasTower();
+                                
+                                Point towerLoc = new Point(theTile.getX()+25, theTile.getY()+25);
+                                towerLocations.add(towerLoc);
+                                System.out.println(towerLocations);
+
+                            }
+                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getPaperFootballLauncher()) {
+                                ImageIcon imageIcon = new ImageIcon("Tower_3.gif");
+                                Image image = imageIcon.getImage();
+                                Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+                                imageIcon = new ImageIcon(newimg);
+                                theTile.setIcon(imageIcon);
+                                theTile.setHasTower();
+                                
+                                Point towerLoc = new Point(theTile.getX()+25, theTile.getY()+25);
+                                towerLocations.add(towerLoc);
+                                System.out.println(towerLocations);
+
+                            }else {
                                 System.out.println("already has a tower!");
                             }
 
