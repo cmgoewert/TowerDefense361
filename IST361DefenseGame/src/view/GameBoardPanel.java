@@ -72,7 +72,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         enemies = new ArrayList<Enemy>();
         enemies.add(new Enemy(200,0,50,50,0));
         
-        proj = new Projectile(100, 50, 25,25);
+        proj = new Projectile(25, 25, 25,25);
 //        JLabel background = new JLabel(new ImageIcon("pathBackground.png"));
 //        this.setContentPane(background);
         theLayout = new GridLayout(12, 12);
@@ -185,8 +185,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             this.repaint();
             //physics.update();   
         } else if(o == projTimer) {
-            proj.x = proj.x + 1;
-            proj.y = proj.y + 1;
         }
         
         Object i = e.getSource();
@@ -198,7 +196,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
 //            physics.update();
         }  
     }
-    
+
     private static boolean exists(int count){
         boolean exists = false;
         int check = count;       
