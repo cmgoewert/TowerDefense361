@@ -7,6 +7,7 @@ package view;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -28,6 +29,7 @@ public class InfoPanel extends JPanel{
     private JButton tower1Button;
     private JButton tower2Button;
     private JButton tower3Button;
+    private JLabel emptyLabel;
     
     
     public InfoPanel(){
@@ -37,8 +39,11 @@ public class InfoPanel extends JPanel{
     private void initComponents(){
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
+        c.anchor = GridBagConstraints.WEST;
+        c.insets = new Insets(3,3,3,3);
         
         setNameLabel(new JLabel("Name: "));
+        setEmptyLabel(new JLabel(" "));
         setScoreLabel(new JLabel("Score: "));
         setMoneyLabel(new JLabel("Money: "));
         setHealthLabel(new JLabel("Health: "));
@@ -56,32 +61,35 @@ public class InfoPanel extends JPanel{
         c.gridx = 1;
         c.gridy = 0;
         this.add(getScoreLabel(), c);
-        c.gridx = 2;
-        c.gridy = 0;
-        this.add(getMoneyLabel(), c);
         c.gridx = 0;
         c.gridy = 1;
-        this.add(getHealthLabel(), c);
+        this.add(getMoneyLabel(), c);
         c.gridx = 1;
         c.gridy = 1;
+        this.add(getHealthLabel(), c);
+        c.gridx = 0;
+        c.gridy = 2;
         this.add(getDifficultyLabel(), c);
-        c.gridx = 2;
-        c.gridy = 1;
+        c.gridx = 0;
+        c.gridy = 3;
+        this.add(getEmptyLabel(),c);
+        c.gridx = 0;
+        c.gridy = 4;
         this.add(getTower1Label(), c);
         c.gridx = 1;
-        c.gridy = 3;
-        this.add(getTower1Button(), c);
-        c.gridx = 1;
         c.gridy = 4;
+        this.add(getTower1Button(), c);
+        c.gridx = 0;
+        c.gridy = 5;
         this.add(getTower2Label(), c);
         c.gridx = 1;
         c.gridy = 5;
         this.add(getTower2Button(), c);
-        c.gridx = 1;
+        c.gridx = 0;
         c.gridy = 6;
         this.add(getTower3Label(), c);
         c.gridx = 1;
-        c.gridy = 7;
+        c.gridy = 6;
         this.add(getTower3Button(), c);
         
     }
@@ -169,7 +177,14 @@ public class InfoPanel extends JPanel{
     public void setTower1Label(JLabel tower1Label) {
         this.tower1Label = tower1Label;
     }
+    
+    public void setEmptyLabel(JLabel emptyLabel) {
+        this.emptyLabel = emptyLabel;
+    }
 
+    public JLabel getEmptyLabel() {
+        return emptyLabel;
+    }
     /**
      * @return the tower2Label
      */
