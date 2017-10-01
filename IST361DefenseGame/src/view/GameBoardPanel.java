@@ -7,6 +7,7 @@ package view;
 
 import controller.GameController;
 import ist361defensegame.Enemy;
+import ist361defensegame.Projectile;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -38,12 +39,19 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     GameController parentCtrl;
     GridLayout theLayout;
     BufferedImage enemy1;
+    BufferedImage projImage;
     //JPanel gamePanel;
     boolean isPresent = false;
     boolean doesExist = false;
     private Timer gameTimer;
     private Timer enemyTimer;
+    private Timer projTimer;
     int countThis = 0;
+    
+    //Tower and Projectile Stuff
+    ArrayList<Point> towerLocations = new ArrayList<>();
+    Projectile proj; 
+    
     
     static int pathTiles[]={3,4,15,16,27,28,29,30,31,32,33,39,40,41,42,43,44,45,56,57,68,69,80,81,92,93,96,97,98,99,100,101,102,103,104,105,108,109,110,111,112,113,114,115,116,117};
     static int pathTiles2[][] = {{0,3},{0,4},{1,3},{1,4},{2,3},{2,4},{2,5},{2,6},{2,7},{2,8},{2,9},{3,3},{3,4},
@@ -56,12 +64,15 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     public GameBoardPanel(GameController theCtrl){
         parentCtrl = theCtrl;
         initComponents();
+        
     }
     
     private void initComponents(){
         this.setBorder(BorderFactory.createRaisedBevelBorder());
         enemies = new ArrayList<Enemy>();
         enemies.add(new Enemy(200,0,50,50,0));
+        
+        proj = new Projectile(100, 50, 25,25);
 //        JLabel background = new JLabel(new ImageIcon("pathBackground.png"));
 //        this.setContentPane(background);
         theLayout = new GridLayout(12, 12);
@@ -88,6 +99,11 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                                 imageIcon = new ImageIcon(newimg);
                                 theTile.setIcon(imageIcon);
                                 theTile.setHasTower();
+                                
+                                Point towerLoc = new Point(theTile.getX()+25, theTile.getY()+25);
+                                towerLocations.add(towerLoc);
+                                System.out.println(towerLocations);
+
                             } else {
                                 System.out.println("already has a tower!");
                             }
@@ -105,6 +121,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         
         gameTimer.start();
         
+        projTimer = new Timer(1, this);
+        projTimer.start();
+        
         this.repaint();
     }
 
@@ -118,6 +137,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             
             img = ImageIO.read(new File("pathBackground5.png"));
             //img = ImageIO.read(new File("alien2.png"));
+            
         } catch (IOException ex) {
             Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -132,6 +152,27 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         enemies.get(0).draw(page);
     }
     
+    //Paints over tiles
+    protected void paintChildren(Graphics g) {
+        super.paintChildren(g);
+
+        Image projScaled = null;
+        
+        try {
+
+            projImage = ImageIO.read(new File("alien2.png"));
+            projScaled = projImage.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
+            
+        } catch (IOException ex) {
+            Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        proj.draw(g);
+      
+      }
+    
+   
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         Object o = e.getSource();
@@ -143,6 +184,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             }
             this.repaint();
             //physics.update();   
+        } else if(o == projTimer) {
+            proj.x = proj.x + 1;
+            proj.y = proj.y + 1;
         }
         
         Object i = e.getSource();

@@ -49,16 +49,16 @@ public class Enemy extends MovingGamePiece{
             case 0:
                 if (y < 150) {
                     super.moveDown();
-                    System.out.println("first stage");
+                    //System.out.println("first stage");
                 } else if (x < 450 && y < 200) {
                     super.moveRight();
-                    System.out.println("second stage");
+                    //System.out.println("second stage");
                 } else if (y < 450 && x > 450) {
                     super.moveDown();
-                    System.out.println("third stage");
+                    //System.out.println("third stage");
                 } else {
                     super.moveLeft();
-                    System.out.println("fourth stage");
+                    //System.out.println("fourth stage");
                 }
             case 1:
 
@@ -71,7 +71,7 @@ public class Enemy extends MovingGamePiece{
 
     @Override
     public void draw(Graphics g) {
-        System.out.println(x + " " + y);
+        //System.out.println(x + " " + y);
        
         g.drawImage(enemyScaled, x, y, null);
     }
