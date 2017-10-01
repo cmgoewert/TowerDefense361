@@ -31,6 +31,20 @@ public class GameController {
 
         currentTower = null;
     }
+
+    /**
+     * @return the currentTower
+     */
+    public Tower getCurrentTower() {
+        return currentTower;
+    }
+
+    /**
+     * @param currentTower the currentTower to set
+     */
+    public void setCurrentTower(Tower currentTower) {
+        this.currentTower = currentTower;
+    }
     
     //TODO: Logic for when it increases when but is killed, decreses when bug is
     // leaves the screen
@@ -68,13 +82,13 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == theGameUI.getInfoPanel().getTower1Button()) {
-                currentTower = Tower.getHomeworkTosser();
+                setCurrentTower(Tower.getHomeworkTosser());
             }
             else if (e.getSource() == theGameUI.getInfoPanel().getTower2Button()) {
-                currentTower = Tower.getEraserCannon();            
+                setCurrentTower(Tower.getEraserCannon());            
             } 
             else {
-                currentTower = Tower.getPaperFootballLauncher();
+                setCurrentTower(Tower.getPaperFootballLauncher());
             }
                   
         }
