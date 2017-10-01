@@ -35,8 +35,15 @@ public class GameUI extends JFrame{
         infoPanel = new InfoPanel();
         
         this.setLayout(new BorderLayout());
-        this.add(infoPanel, BorderLayout.EAST);
+        this.add(getInfoPanel(), BorderLayout.EAST);
         this.add(theGameBoard, BorderLayout.CENTER);
         this.pack();
+    }
+
+    /**
+     * @return the infoPanel
+     */
+    public InfoPanel getInfoPanel() {
+        return infoPanel;
     }
 }

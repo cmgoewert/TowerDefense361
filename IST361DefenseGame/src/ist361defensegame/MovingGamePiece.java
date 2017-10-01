@@ -35,10 +35,10 @@ public abstract class MovingGamePiece extends Rectangle{
         Point currLocation = this.getLocation();
         int xLocation = (int) currLocation.getX() - (int) speedX;
         int yLocation = (int) currLocation.getY();
-        System.out.println("move left executred");
-        System.out.println(xLocation);
-        System.out.println(speedX);
-        System.out.println(currLocation.getX());
+//        System.out.println("move left executred");
+//        System.out.println(xLocation);
+//        System.out.println(speedX);
+//        System.out.println(currLocation.getX());
         this.setLocation(xLocation, yLocation);
 
     }
