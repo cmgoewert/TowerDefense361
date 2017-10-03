@@ -21,6 +21,7 @@ public class NavigationController {
     
     public void startGame(){
         GameController gc = new GameController();
+        theMainMenu.setVisible(false);
     }
     
 }
