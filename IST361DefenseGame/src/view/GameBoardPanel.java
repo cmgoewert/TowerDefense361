@@ -205,8 +205,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        
-        for(Projectile proj : projectiles) {  
+        ArrayList<Projectile> projs = parentCtrl.getProjectiles();
+        for(Projectile proj : projs) {  
             proj.draw(g);          
         }
         

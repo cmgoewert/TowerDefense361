@@ -111,6 +111,10 @@ public class GameController {
         return enemies;
     }
     
+    public ArrayList<Projectile> getProjectiles(){
+        return projectiles;
+    }
+    
     //TODO: Logic for when it increases when but is killed, decreses when bug is
     // leaves the screen
     class ScoreListener implements ActionListener {
