@@ -52,7 +52,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     
     //Tower and Projectile Stuff
     ArrayList<Point> towerLocations = new ArrayList<>();
-    ArrayList<Projectile> projectiles;
     
     private File enemyPic1;
     private File enemyPic2;
@@ -75,7 +74,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     private void initComponents(){
         this.setBorder(BorderFactory.createRaisedBevelBorder());
         enemies = new ArrayList<Enemy>();
-        projectiles = new ArrayList<>();
         
         enemyPic1 = new File("alien2.png");
         enemyPic2 = new File("alien.png");
@@ -204,9 +202,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         } catch (IOException ex) {
             Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        ArrayList<Projectile> projs = parentCtrl.getProjectiles();
-        for(Projectile proj : projs) {  
+          
+        for(Projectile proj : parentCtrl.getProjectiles()) {  
             proj.draw(g);          
         }
         
@@ -223,7 +220,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             for(Enemy enemy : enemies){
                 enemy.update();
             }  
-            for(Projectile proj : projectiles) { // Updating via gametimer
+            for(Projectile proj : parentCtrl.getProjectiles()) { // Updating via gametimer
                 proj.update();
             }
             this.repaint();
