@@ -19,16 +19,16 @@ import view.InfoPanel;
  * @author cmg5831
  */
 public class GameController {
-    private GameUI theGameUI;
+    private GameUI gameUI;
     private InfoPanel infoPanel;
     private Tower currentTower;
     
     public GameController(){
-        theGameUI = new GameUI(this);
-        theGameUI.getInfoPanel().getStartButton().addActionListener(new StartButtonListener());
-        theGameUI.getInfoPanel().getTower1Button().addActionListener(new TowerListener());
-        theGameUI.getInfoPanel().getTower2Button().addActionListener(new TowerListener());
-        theGameUI.getInfoPanel().getTower3Button().addActionListener(new TowerListener());
+        gameUI = new GameUI(this);
+        gameUI.getInfoPanel().getStartButton().addActionListener(new StartButtonListener());
+        gameUI.getInfoPanel().getTower1Button().addActionListener(new TowerListener());
+        gameUI.getInfoPanel().getTower2Button().addActionListener(new TowerListener());
+        gameUI.getInfoPanel().getTower3Button().addActionListener(new TowerListener());
 
         currentTower = null;
     }
@@ -51,7 +51,9 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Next wave starts");        
+            System.out.println("Next wave starts"); 
+            //gameUI.getGameBoardPanel.getTimers 
+            //gameUI.getGameBoardPanel.getOtherThings
         }
         
     }
@@ -62,7 +64,7 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            //This infopanel will problaby need to be GameUI.getInfoPanel instead
+            //This infopanel will problaby need to be gameUI.getInfoPanel instead
             infoPanel.getScoreLabel().setText("Test"); //new Score on action
         }
     
@@ -94,10 +96,10 @@ public class GameController {
     class TowerListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == theGameUI.getInfoPanel().getTower1Button()) {
+            if (e.getSource() == gameUI.getInfoPanel().getTower1Button()) {
                 setCurrentTower(Tower.getHomeworkTosser());
             }
-            else if (e.getSource() == theGameUI.getInfoPanel().getTower2Button()) {
+            else if (e.getSource() == gameUI.getInfoPanel().getTower2Button()) {
                 setCurrentTower(Tower.getEraserCannon());            
             } 
             else {
