@@ -19,8 +19,8 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        GameController ctrl = new GameController();
-        //NavigationController navCtrl = new NavigationController();
+        //GameController ctrl = new GameController();
+        NavigationController navCtrl = new NavigationController();
     }
     
 }

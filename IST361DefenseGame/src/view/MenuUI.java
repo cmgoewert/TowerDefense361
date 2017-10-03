@@ -31,7 +31,8 @@ public class MenuUI extends JPanel implements ActionListener{
     private JLabel difficultyLabel;
     private ArrayList<JButton> difficulty;
     
-    private JLabel highScoreLabel;
+    //private JLabel highScoreLabel;
+    private JButton scoreButton;
     
     public MenuUI (NavigationController navController) {
         this.navController = navController;
@@ -52,31 +53,33 @@ public class MenuUI extends JPanel implements ActionListener{
         nameLabel.setForeground(Color.WHITE);
         gb.gridx = 1;
         gb.gridy = 1;
-        gb.insets = new Insets(0,200,0,0);
+        gb.insets = new Insets(500,0,0,0);
         add(nameLabel, gb);
         
         nameField = new JTextField("");
-        gb.gridx = 2;
+        gb.gridx = 1;
         gb.gridy = 1;
-        gb.insets = new Insets(0,200,0,0);
+        gb.insets = new Insets(500,290,0,0);
         gb.fill = GridBagConstraints.HORIZONTAL;
         add(nameField, gb);
         
         
         gb.fill = GridBagConstraints.NONE;
         
-        highScoreLabel = new JLabel("Score");
-        highScoreLabel.setForeground(Color.WHITE);
-        gb.gridx = 3;
+        scoreButton = new JButton("View High Scores");
+        //highScoreLabel = new JLabel("");
+        //highScoreLabel.setForeground(Color.WHITE);
+        gb.gridx = 2;
         gb.gridy = 1;
-        gb.insets = new Insets(0,200,0,0);
-        add(highScoreLabel, gb);
+        gb.insets = new Insets(500,0,0,0);
+        //add(highScoreLabel, gb);
+        add(scoreButton, gb);
         
         difficultyLabel = new JLabel("Select a difficulty.");
         difficultyLabel.setForeground(Color.WHITE);
         gb.gridx = 1;
         gb.gridy = 2;
-        gb.insets = new Insets(0,0,10,0);
+        gb.insets = new Insets(0,0,100,0);
         add(difficultyLabel, gb);
         
         difficulty = new ArrayList<>();
@@ -86,9 +89,15 @@ public class MenuUI extends JPanel implements ActionListener{
         
         gb.gridx = 2;
         gb.gridy = 2;
-        gb.insets = new Insets(0,0,10,0);
+        gb.insets = new Insets(0,0,100,0);
+        //int left = 0;
+        //int right = 0;
         for (JButton button : difficulty) {
             button.addActionListener(this); 
+            
+            //gb.insets = new Insets(0,left,100,right);
+            //left += 150;
+            //right += 150;
             add(button, gb);
             gb.gridx++;
         }
@@ -96,9 +105,9 @@ public class MenuUI extends JPanel implements ActionListener{
         setVisible(true);
     }
     
-    public void setHighScore(String score) {
-        highScoreLabel.setText("High score : " + score);
-    }
+//    public void setHighScore(String score) {
+//        highScoreLabel.setText("High score : " + score);
+//    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -111,7 +120,10 @@ public class MenuUI extends JPanel implements ActionListener{
         else if (eventSource == difficulty.get(1)) { //medium difficulty
             
         }
-        else { //hard difficulty
+        else if (eventSource == difficulty.get(2)) { //hard difficulty
+            
+        }
+        else { //score button
             
         }
         
