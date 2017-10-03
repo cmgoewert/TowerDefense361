@@ -37,28 +37,29 @@ public class Projectile extends MovingGamePiece {
         } catch (IOException ex) {
             System.out.println("caught");
         }
-        this.setSpeed(3,3);
     }
     @Override
     public void update() {
         int speed = 10;
+        int diffX = Math.abs(x - enemy.x);
+        int diffY = Math.abs(y - enemy.y);
         //Depending on where enemy is the x and y will increment or decrement until it is equal
-        if(x > enemy.x){
-            
-            x -= speed;
-            
-        } else if(x < enemy.x){
-            
+        if(x > enemy.x){  
+            x -= speed;  
+        } else if(x < enemy.x){   
             x += speed;
         }
 
         if(y > enemy.y){
-
             y -= speed;
-
-        } else if(y < enemy.y){
-            
-            y += speed;
+        } else if(y < enemy.y){            
+            y += speed;           
+        }
+        
+        //Offset for enemy's constant movement projectile x will never equal enemy.x
+        //5 is somewhat arbitary
+        if(diffX < 5 && diffY < 5) {
+            //System.out.println("Enemy Hit");
         }
         
         //TODO: Handle when enemy x and y is equal to proj x and y

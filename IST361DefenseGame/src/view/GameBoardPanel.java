@@ -101,7 +101,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                     boardSquares[i][j].addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
-                           if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getHomeworkTosser()) {
+                           if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerOne()) {
                                 ImageIcon imageIcon = new ImageIcon("Tower_1.gif");
                                 Image image = imageIcon.getImage();
                                 Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
@@ -114,7 +114,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                                 System.out.println(towerLocations);
 
                             } 
-                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getEraserCannon()) {
+                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerTwo()) {
                                 ImageIcon imageIcon = new ImageIcon("Tower_2.gif");
                                 Image image = imageIcon.getImage();
                                 Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
@@ -127,7 +127,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                                 System.out.println(towerLocations);
 
                             }
-                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getPaperFootballLauncher()) {
+                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerThree()) {
                                 ImageIcon imageIcon = new ImageIcon("Tower_3.gif");
                                 Image image = imageIcon.getImage();
                                 Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
@@ -205,10 +205,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         }
         
         
-        for(Projectile proj : projectiles) {
-            
-            proj.draw(g);
-            
+        for(Projectile proj : projectiles) {  
+            proj.draw(g);          
         }
         
       }
@@ -224,7 +222,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             for(Enemy enemy : enemies){
                 enemy.update();
             }  
-            for(Projectile proj : projectiles) {
+            for(Projectile proj : projectiles) { // Updating via gametimer
                 proj.update();
             }
             this.repaint();
@@ -239,7 +237,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                 switch (enemyCount){
                     case 0:
                         enemies.add(new Enemy(175,0,50,50,0, enemyPic1));
-                            projectiles.add(new Projectile(25, 25, 25,25, enemies.get(enemyCount)));
+                            projectiles.add(new Projectile(25, 25, 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
                         enemyCount ++;
                         break;
                     case 1:

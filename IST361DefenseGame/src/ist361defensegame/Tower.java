@@ -18,9 +18,9 @@ public class Tower extends ImageIcon{
     public ImageIcon image;
     
     private static final Tower nullTower = new Tower (0, 0, 0, 0, new ImageIcon("GameTile2.png"));
-    private static final Tower homeworkTosser = new Tower (30, 0, 1, 10, new ImageIcon("Tower_1.gif"));
-    private static final Tower eraserCannon = new Tower (20, 0, 1, 10, new ImageIcon("Tower_1.gif"));
-    private static final Tower paperFootballLauncher = new Tower (25, 0, 1, 10, new ImageIcon("Tower_1.gif"));
+    private static final Tower towerOne = new Tower (30, 0, 1, 10, new ImageIcon("Tower_1.gif"));
+    private static final Tower towerTwo = new Tower (20, 0, 1, 10, new ImageIcon("Tower_2.gif"));
+    private static final Tower towerThree = new Tower (25, 0, 1, 10, new ImageIcon("Tower_3.gif"));
     
     public Tower(int cost, int type, int strength, int radius, ImageIcon image)
 	{
@@ -39,24 +39,24 @@ public class Tower extends ImageIcon{
     }
 
     /**
-     * @return the homeworkTosser
+     * @return the towerOne
      */
-    public static Tower getHomeworkTosser() {
-        return homeworkTosser;
+    public static Tower getTowerOne() {
+        return towerOne;
     }
 
     /**
-     * @return the eraserCannon
+     * @return the towerTwo
      */
-    public static Tower getEraserCannon() {
-        return eraserCannon;
+    public static Tower getTowerTwo() {
+        return towerTwo;
     }
 
     /**
-     * @return the paperFootballLauncher
+     * @return the towerThree
      */
-    public static Tower getPaperFootballLauncher() {
-        return paperFootballLauncher;
+    public static Tower getTowerThree() {
+        return towerThree;
     }
     
 }

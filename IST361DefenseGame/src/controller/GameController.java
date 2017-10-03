@@ -97,13 +97,13 @@ public class GameController {
         @Override
         public void actionPerformed(ActionEvent e) {
             if (e.getSource() == gameUI.getInfoPanel().getTower1Button()) {
-                setCurrentTower(Tower.getHomeworkTosser());
+                setCurrentTower(Tower.getTowerOne());
             }
             else if (e.getSource() == gameUI.getInfoPanel().getTower2Button()) {
-                setCurrentTower(Tower.getEraserCannon());            
+                setCurrentTower(Tower.getTowerTwo());            
             } 
             else {
-                setCurrentTower(Tower.getPaperFootballLauncher());
+                setCurrentTower(Tower.getTowerThree());
             }
                   
         }
