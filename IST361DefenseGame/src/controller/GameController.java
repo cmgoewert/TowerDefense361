@@ -29,6 +29,7 @@ public class GameController {
     private int enemyCount;
     private ArrayList<Enemy> enemies;
     ArrayList<Projectile> projectiles;
+    boolean waveOver = false;
     
     private File enemyPic1;
     private File enemyPic2;
@@ -68,24 +69,34 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Next wave starts");
+            if(!waveOver)
+                startNewWave(1);
+        }
+        
+    }
+    
+    public void startNewWave(int level){
+        enemyCount = 0;
+        int waveEnemyCount = level * 3;
+
             if(enemies == null){
                 enemies = new ArrayList<Enemy>();
             }
-             while(enemyCount < 3){
+             while(enemyCount < waveEnemyCount){
+                 
                 switch (enemyCount){
                     case 0:
-                        enemies.add(new Enemy(175,0,50,50,0, enemyPic1));
+                        enemies.add(new Enemy(175,0,50,50,0, enemyPic1, 100));
                         projectiles.add(new Projectile(25, 25, 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
                         enemyCount ++;
                         break;
                     case 1:
-                        enemies.add(new Enemy(155,0,50,50,1, enemyPic2));
+                        enemies.add(new Enemy(155,0,50,50,1, enemyPic2, 100));
                         projectiles.add(new Projectile(450, 25, 25,25, enemies.get(enemyCount)));
                         enemyCount++;
                         break;
                     case 2:
-                        enemies.add(new Enemy(195,0,50,50,2, enemyPic3));
+                        enemies.add(new Enemy(195,0,50,50,2, enemyPic3, 100));
                         projectiles.add(new Projectile(25, 300, 25,25, enemies.get(enemyCount)));
                         enemyCount++;
                         break;
@@ -94,8 +105,6 @@ public class GameController {
             }
             //gameUI.getGameBoardPanel.getTimers 
             //gameUI.getGameBoardPanel.getOtherThings
-        }
-        
     }
     
     public ArrayList<Enemy> getEnemies(){

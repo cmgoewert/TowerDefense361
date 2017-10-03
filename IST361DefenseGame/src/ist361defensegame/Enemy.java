@@ -26,12 +26,14 @@ public class Enemy extends MovingGamePiece{
     private int pathOption;
     private int stage;
     File enemy;
+    private int health;
     
-    public Enemy (int xLoc, int yLoc, int width, int height, int pathOption, File enemy){
+    public Enemy (int xLoc, int yLoc, int width, int height, int pathOption, File enemy, int totalHealth){
         super(xLoc, yLoc, width, height);
         System.out.println("created enemy");
         this.pathOption = pathOption;
         this.enemy = enemy;
+        this.health = totalHealth;
         stage = 0;
         init();
     }
