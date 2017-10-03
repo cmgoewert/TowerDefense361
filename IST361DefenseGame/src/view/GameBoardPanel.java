@@ -35,7 +35,7 @@ import javax.swing.Timer;
  * @author cmg5831
  */
 public class GameBoardPanel extends JPanel  implements ActionListener{
-    ArrayList<GameTilePanel> theTiles = new ArrayList<GameTilePanel>();
+    ArrayList<GameTile> theTiles = new ArrayList<GameTile>();
     ArrayList<Enemy> enemies;
     GameController parentCtrl;
     int enemyCount = 0;
@@ -51,8 +51,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     Tower tower;
     
     //Tower and Projectile Stuff
-    ArrayList<Point> towerLocations = new ArrayList<>();
-    ArrayList<Tower> towers = new ArrayList<>();
+    ArrayList<GameTile> towerTiles = new ArrayList<>();
     ImageIcon towerImage1;
     ImageIcon towerImage2;
     ImageIcon towerImage3;
@@ -94,10 +93,10 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                 isPresent = exists(counter);
                 counter++;
                 if (isPresent) {
-                    boardSquares[i][j] = new GameTilePanel(parentCtrl, true);
+                    boardSquares[i][j] = new GameTile(parentCtrl, true);
                 } else {
-                    final GameTilePanel theTile = new GameTilePanel(parentCtrl, false);
-                    boardSquares[i][j] = new GameTilePanel(parentCtrl, false);
+                    final GameTile theTile = new GameTile(parentCtrl, false);
+                    boardSquares[i][j] = new GameTile(parentCtrl, false);
                     boardSquares[i][j] = theTile;
                     boardSquares[i][j].addMouseListener(new MouseAdapter() {
                         @Override
@@ -105,15 +104,13 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerOne()) {
                                 placeTower(theTile, towerImage1);
 
-                            } 
-                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerTwo()) {
+                            } else if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerTwo()) {
                                 placeTower(theTile, towerImage2);
 
-                            }
-                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerThree()) {
+                            } else if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerThree()) {
                                 placeTower(theTile, towerImage3);
 
-                            }else {
+                            } else {
                                 System.out.println("already has a tower!");
                             }
 
@@ -224,15 +221,14 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     }  
     
     //Function to place tower 
-    public void placeTower(GameTilePanel theTile, ImageIcon towerImage) {
+    public void placeTower(GameTile theTile, ImageIcon towerImage) {
         Image image = towerImage.getImage();
         Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
         towerImage = new ImageIcon(newimg);
         theTile.setIcon(towerImage);
         theTile.setHasTower();
-
-        Point towerLoc = new Point(theTile.getX()+25, theTile.getY()+25);
-        towerLocations.add(towerLoc);
-        //System.out.println(towerLocations);
+        
+        parentCtrl.getTowerTiles().add(theTile);
+        System.out.println(parentCtrl.getTowerTiles().get(parentCtrl.getTowerTiles().size() - 1).getLocation());
     }
 }

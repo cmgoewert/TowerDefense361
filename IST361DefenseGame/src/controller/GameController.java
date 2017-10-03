@@ -10,11 +10,9 @@ import ist361defensegame.Projectile;
 import ist361defensegame.Tower;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
 import java.util.ArrayList;
-import javax.swing.ImageIcon;
+import view.GameTile;
 import view.GameUI;
 import view.InfoPanel;
 
@@ -28,7 +26,8 @@ public class GameController {
     private Tower currentTower;
     private int enemyCount;
     private ArrayList<Enemy> enemies;
-    ArrayList<Projectile> projectiles;
+    private ArrayList<Projectile> projectiles;
+    private ArrayList<GameTile> towerTiles;
     boolean waveOver = false;
     
     private File enemyPic1;
@@ -45,6 +44,7 @@ public class GameController {
         currentTower = null;
         
         projectiles = new ArrayList<>();
+        towerTiles = new ArrayList<>();
         
         enemyPic1 = new File("alien2.png");
         enemyPic2 = new File("alien.png");
@@ -63,6 +63,13 @@ public class GameController {
      */
     public void setCurrentTower(Tower currentTower) {
         this.currentTower = currentTower;
+    }
+
+    /**
+     * @return the towerTiles
+     */
+    public ArrayList<GameTile> getTowerTiles() {
+        return towerTiles;
     }
     
     class StartButtonListener implements ActionListener {

@@ -20,13 +20,13 @@ import javax.swing.JPanel;
  *
  * @author cmg5831
  */
-public class GameTilePanel extends JLabel{
+public class GameTile extends JLabel{
     GameController gameCtrl;
     boolean path;
     boolean hasTower;
     
     
-    public GameTilePanel(GameController theCtrl, boolean path){
+    public GameTile(GameController theCtrl, boolean path){
         gameCtrl = theCtrl;
         this.path = path;
         initComponenets();
