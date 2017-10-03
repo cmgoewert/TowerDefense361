@@ -53,9 +53,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     
     //Tower and Projectile Stuff
     ArrayList<Point> towerLocations = new ArrayList<>();
-    Projectile proj; 
-    int startX;
-    int startY;
+    ArrayList<Projectile> projectiles;
     
     private File enemyPic1;
     private File enemyPic2;
@@ -78,10 +76,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     private void initComponents(){
         this.setBorder(BorderFactory.createRaisedBevelBorder());
         enemies = new ArrayList<Enemy>();
+        projectiles = new ArrayList<>();
         
-        proj = new Projectile(25, 25, 25,25);
-        startX = proj.x;
-        startY = proj.y;
 //        JLabel background = new JLabel(new ImageIcon("pathBackground.png"));
 //        this.setContentPane(background);
         
@@ -162,7 +158,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         gameTimer.start();
         enemyTimer.start();
         
-        projTimer = new Timer(1, this);
+        projTimer = new Timer(1000, this);
         projTimer.start();
         
         this.repaint();
@@ -189,30 +185,35 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         
         page.drawImage(img, 0, 0, null);
         //page.drawImage(enemyScaled, 200, 50, null);
-        for(Enemy enemy : enemies){
+        for(Enemy enemy : enemies){           
             enemy.update();
             enemy.draw(page);
         }
-        
+              
     }
     
     //Paints over tiles
     protected void paintChildren(Graphics g) {
         super.paintChildren(g);
-
+        
         Image projScaled = null;
         
         try {
 
             projImage = ImageIO.read(new File("alien2.png"));
             projScaled = projImage.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
-            
+               
         } catch (IOException ex) {
             Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-        proj.draw(g);
-      
+        
+        
+        for(Projectile proj : projectiles) {
+            
+            proj.draw(g);
+            
+        }
+        
       }
     
    
@@ -225,18 +226,12 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         if (o == gameTimer) {
             for(Enemy enemy : enemies){
                 enemy.update();
+            }  
+            for(Projectile proj : projectiles) {
+                proj.update();
             }
             this.repaint();
             //physics.update();   
-        } else if(o == projTimer) {
-            double diffX = 100 - startX;
-            double diffY = 500 - startY;
-            double direction = Math.atan(diffY / diffX);
-            double speed = 5.0;
-            
-            proj.x = proj.x + (int) (speed * Math.cos(direction));
-            proj.y = proj.y + (int) (speed * Math.sin(direction));
-
         }
         
         Object i = e.getSource();
@@ -247,6 +242,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                 switch (enemyCount){
                     case 0:
                         enemies.add(new Enemy(175,0,50,50,0, enemyPic1));
+                        projectiles.add(new Projectile(25, 25, 25,25, enemies.get(enemyCount)));
                         enemyCount ++;
                         break;
                     case 1:
@@ -258,6 +254,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                         enemyCount++;
                         break;
                 }
+                
+             ;   
             }
             
             //155(path 1),175 (path 0),195 (path 2) are the starting positions

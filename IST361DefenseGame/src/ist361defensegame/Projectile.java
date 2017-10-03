@@ -20,9 +20,11 @@ public class Projectile extends MovingGamePiece {
 
     private BufferedImage image;
     private Image projScaled;
+    private Enemy enemy;
     
-    public Projectile(int xLoc, int yLoc, int width, int height) {
+    public Projectile(int xLoc, int yLoc, int width, int height, Enemy enemy) {
         super(xLoc, yLoc, width, height);
+        this.enemy = enemy;
         init();
     }
     
@@ -39,13 +41,24 @@ public class Projectile extends MovingGamePiece {
     }
     @Override
     public void update() {
-//            double xDiff = x - 500;
-//            double yDiff = y - 500;
-//            double sigma = Math.atan2(xDiff, yDiff);
-//            double moveMag = Math.min(100, Math.sqrt(Math.pow(xDiff, 2) + Math.pow(yDiff, 2)));
-//            x = (int) (x - (moveMag * Math.cos(sigma)));
-//            y = (int) (y - (moveMag * Math.sin(sigma)));
 
+        if(x > enemy.x){
+            
+            x -= 10;
+            
+        } else if(x < enemy.x){
+            
+            x += 10;
+        }
+
+        if(y > enemy.y){
+
+            y -= 10;
+
+        } else if(y < enemy.y){
+            
+            y += 10;
+        }
     }
 
     @Override
