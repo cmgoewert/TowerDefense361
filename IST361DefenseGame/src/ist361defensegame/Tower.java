@@ -14,7 +14,9 @@ import javax.swing.JLabel;
  */
 public class Tower extends JLabel{
    
-    public int cost, type, strength, radius;
+    private int cost;
+    private int strength;
+    private int radius;
     public ImageIcon image;
     private static final Tower nullTower = new Tower (0, 0, 0);
     private static final Tower towerOne = new Tower (20, 1, 10);
@@ -53,6 +55,27 @@ public class Tower extends JLabel{
      */
     public static Tower getTowerThree() {
         return towerThree;
+    }
+
+    /**
+     * @return the cost
+     */
+    public int getCost() {
+        return cost;
+    }
+
+    /**
+     * @return the strength
+     */
+    public int getStrength() {
+        return strength;
+    }
+
+    /**
+     * @return the radius
+     */
+    public int getRadius() {
+        return radius;
     }
     
 }

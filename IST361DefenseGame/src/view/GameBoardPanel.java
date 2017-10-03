@@ -55,9 +55,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     ImageIcon towerImage1;
     ImageIcon towerImage2;
     ImageIcon towerImage3;
-    int[] towerInfo1 = {30,20,25};
-    int[] towerInfo2 = {35,25,30};
-    int[] towerInfo3 = {40,30,35};
+    int[] towerInfo1 = {30,20,100};
+    int[] towerInfo2 = {35,25,200};
+    int[] towerInfo3 = {40,30,250};
     
     private File enemyPic1;
     private File enemyPic2;
@@ -108,7 +108,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerOne()) {
                                 placeTower(theTile, towerImage1, towerInfo1);
                                 
-
                             } else if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerTwo()) {
                                 placeTower(theTile, towerImage2, towerInfo2);
 
@@ -198,6 +197,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                 enemy.update();
             }  
             for(Projectile proj : parentCtrl.getProjectiles()) { // Updating via gametimer
+                int diffX = Math.abs(proj.getEnemy().x - proj.getTower().getX());
+                int diffY = Math.abs(proj.getEnemy().y - proj.getTower().getY());
+                if(diffX < proj.getTower().getRadius() && diffY < proj.getTower().getRadius())
                 proj.update();
             }
             this.repaint();

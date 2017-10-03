@@ -22,10 +22,12 @@ public class Projectile extends MovingGamePiece {
     private BufferedImage image;
     private Image projScaled;
     private Enemy enemy;
+    private Tower tower;
     
     public Projectile(Tower tower, int xLoc, int yLoc, int width, int height, Enemy enemy) {
         super(xLoc, yLoc, width, height);
         this.enemy = enemy;
+        this.tower = tower;
         init();
         
     }
@@ -43,18 +45,18 @@ public class Projectile extends MovingGamePiece {
     @Override
     public void update() {
         int speed = 10;
-        int diffX = Math.abs(x - enemy.x);
-        int diffY = Math.abs(y - enemy.y);
+        int diffX = Math.abs(x - getEnemy().x);
+        int diffY = Math.abs(y - getEnemy().y);
         //Depending on where enemy is the x and y will increment or decrement until it is equal
-        if(x > enemy.x){  
+        if(x > getEnemy().x){  
             x -= speed;  
-        } else if(x < enemy.x){   
+        } else if(x < getEnemy().x){   
             x += speed;
         }
 
-        if(y > enemy.y){
+        if(y > getEnemy().y){
             y -= speed;
-        } else if(y < enemy.y){            
+        } else if(y < getEnemy().y){            
             y += speed;           
         }
         
@@ -70,6 +72,27 @@ public class Projectile extends MovingGamePiece {
     @Override
     public void draw(Graphics g) {
         g.drawImage(projScaled, x, y, null);
+    }
+
+    /**
+     * @return the enemy
+     */
+    public Enemy getEnemy() {
+        return enemy;
+    }
+
+    /**
+     * @return the tower
+     */
+    public Tower getTower() {
+        return tower;
+    }
+
+    /**
+     * @param tower the tower to set
+     */
+    public void setTower(Tower tower) {
+        this.tower = tower;
     }
     
 }
