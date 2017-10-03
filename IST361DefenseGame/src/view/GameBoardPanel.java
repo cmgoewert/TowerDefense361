@@ -52,6 +52,10 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     
     //Tower and Projectile Stuff
     ArrayList<Point> towerLocations = new ArrayList<>();
+    ArrayList<Tower> towers = new ArrayList<>();
+    ImageIcon towerImage1;
+    ImageIcon towerImage2;
+    ImageIcon towerImage3;
     
     private File enemyPic1;
     private File enemyPic2;
@@ -67,8 +71,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     
     public GameBoardPanel(GameController theCtrl){
         parentCtrl = theCtrl;
-        initComponents();
-        
+        initComponents();        
     }
     
     private void initComponents(){
@@ -78,6 +81,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         enemyPic1 = new File("alien2.png");
         enemyPic2 = new File("alien.png");
         enemyPic3 = new File("alien3.png");
+        towerImage1 = new ImageIcon("Tower_1.gif");
+        towerImage2 = new ImageIcon("Tower_2.gif");
+        towerImage3 = new ImageIcon("Tower_3.gif");
         
         theLayout = new GridLayout(12, 12);
         this.setLayout(theLayout);
@@ -97,42 +103,15 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                         @Override
                         public void mouseClicked(MouseEvent e) {
                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerOne()) {
-                                ImageIcon imageIcon = new ImageIcon("Tower_1.gif");
-                                Image image = imageIcon.getImage();
-                                Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
-                                imageIcon = new ImageIcon(newimg);
-                                theTile.setIcon(imageIcon);
-                                theTile.setHasTower();
-                                
-                                Point towerLoc = new Point(theTile.getX()+25, theTile.getY()+25);
-                                towerLocations.add(towerLoc);
-                                System.out.println(towerLocations);
+                                placeTower(theTile, towerImage1);
 
                             } 
                             if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerTwo()) {
-                                ImageIcon imageIcon = new ImageIcon("Tower_2.gif");
-                                Image image = imageIcon.getImage();
-                                Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
-                                imageIcon = new ImageIcon(newimg);
-                                theTile.setIcon(imageIcon);
-                                theTile.setHasTower();
-                                
-                                Point towerLoc = new Point(theTile.getX()+25, theTile.getY()+25);
-                                towerLocations.add(towerLoc);
-                                System.out.println(towerLocations);
+                                placeTower(theTile, towerImage2);
 
                             }
                             if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerThree()) {
-                                ImageIcon imageIcon = new ImageIcon("Tower_3.gif");
-                                Image image = imageIcon.getImage();
-                                Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
-                                imageIcon = new ImageIcon(newimg);
-                                theTile.setIcon(imageIcon);
-                                theTile.setHasTower();
-                                
-                                Point towerLoc = new Point(theTile.getX()+25, theTile.getY()+25);
-                                towerLocations.add(towerLoc);
-                                System.out.println(towerLocations);
+                                placeTower(theTile, towerImage3);
 
                             }else {
                                 System.out.println("already has a tower!");
@@ -155,7 +134,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         
         this.repaint();
     }
-
+    
     public void paintComponent(Graphics page) {
         BufferedImage img = null;
         Image enemyScaled = null;
@@ -170,9 +149,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         } catch (IOException ex) {
             Logger.getLogger(GameBoardPanel.class.getName()).log(Level.SEVERE, null, ex);
         }
- 
 
-        
         super.paintComponent(page);
         
         page.drawImage(img, 0, 0, null);
@@ -207,9 +184,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             proj.draw(g);          
         }
         
-      }
-    
-   
+      }  
     
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -246,5 +221,18 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             }          
         }       
         return exists;
-    }     
+    }  
+    
+    //Function to place tower 
+    public void placeTower(GameTilePanel theTile, ImageIcon towerImage) {
+        Image image = towerImage.getImage();
+        Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+        towerImage = new ImageIcon(newimg);
+        theTile.setIcon(towerImage);
+        theTile.setHasTower();
+
+        Point towerLoc = new Point(theTile.getX()+25, theTile.getY()+25);
+        towerLocations.add(towerLoc);
+        //System.out.println(towerLocations);
+    }
 }
