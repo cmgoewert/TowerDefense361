@@ -93,13 +93,8 @@ public class InfoPanel extends JPanel{
         c.gridx = 1;
         c.gridy = 6;
         this.add(getTower3Button(), c);
-        c.gridx = 0;
+        c.gridx = 1;
         c.gridy = 7;
-        this.add(getEmptyLabel(),c);
-        c.gridx = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.gridwidth = 2;   
-        c.gridy = 8;
         this.add(getStartButton(), c);
         
     }
