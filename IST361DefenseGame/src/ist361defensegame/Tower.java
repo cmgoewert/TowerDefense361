@@ -12,24 +12,20 @@ import javax.swing.JLabel;
  *
  * @author reesmcdevitt
  */
-public class Tower extends ImageIcon{
+public class Tower extends JLabel{
    
     public int cost, type, strength, radius;
     public ImageIcon image;
+    private static final Tower nullTower = new Tower (0, 0, 0);
+    private static final Tower towerOne = new Tower (20, 1, 10);
+    private static final Tower towerTwo = new Tower (20, 1, 10);
+    private static final Tower towerThree = new Tower (25, 1, 10);
     
-    private static final Tower nullTower = new Tower (0, 0, 0, 0, new ImageIcon("GameTile2.png"));
-    private static final Tower towerOne = new Tower (30, 0, 1, 10, new ImageIcon("Tower_1.gif"));
-    private static final Tower towerTwo = new Tower (20, 0, 1, 10, new ImageIcon("Tower_2.gif"));
-    private static final Tower towerThree = new Tower (25, 0, 1, 10, new ImageIcon("Tower_3.gif"));
-    
-    public Tower(int cost, int type, int strength, int radius, ImageIcon image)
-	{
-		this.cost = cost;
-                this.type = type;
-                this.strength = strength;
-                this.radius = radius;
-                this.image = image;
-        }
+    public Tower(int cost, int strength, int radius) {
+        this.cost = cost;
+        this.strength = strength;
+        this.radius = radius;        
+    }
 
     /**
      * @return the nullTower

@@ -11,6 +11,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
+import view.GameTile;
 
 /**
  *
@@ -22,10 +23,11 @@ public class Projectile extends MovingGamePiece {
     private Image projScaled;
     private Enemy enemy;
     
-    public Projectile(int xLoc, int yLoc, int width, int height, Enemy enemy) {
+    public Projectile(Tower tower, int xLoc, int yLoc, int width, int height, Enemy enemy) {
         super(xLoc, yLoc, width, height);
         this.enemy = enemy;
         init();
+        
     }
     
     private void init(){

@@ -55,6 +55,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     ImageIcon towerImage1;
     ImageIcon towerImage2;
     ImageIcon towerImage3;
+    int[] towerInfo1 = {30,20,25};
+    int[] towerInfo2 = {35,25,30};
+    int[] towerInfo3 = {40,30,35};
     
     private File enemyPic1;
     private File enemyPic2;
@@ -84,6 +87,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         towerImage2 = new ImageIcon("Tower_2.gif");
         towerImage3 = new ImageIcon("Tower_3.gif");
         
+        
         theLayout = new GridLayout(12, 12);
         this.setLayout(theLayout);
         JLabel[][] boardSquares = new JLabel[12][12];
@@ -102,13 +106,14 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                         @Override
                         public void mouseClicked(MouseEvent e) {
                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerOne()) {
-                                placeTower(theTile, towerImage1);
+                                placeTower(theTile, towerImage1, towerInfo1);
+                                
 
                             } else if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerTwo()) {
-                                placeTower(theTile, towerImage2);
+                                placeTower(theTile, towerImage2, towerInfo2);
 
                             } else if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerThree()) {
-                                placeTower(theTile, towerImage3);
+                                placeTower(theTile, towerImage3, towerInfo3);
 
                             } else {
                                 System.out.println("already has a tower!");
@@ -221,14 +226,21 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     }  
     
     //Function to place tower 
-    public void placeTower(GameTile theTile, ImageIcon towerImage) {
-        Image image = towerImage.getImage();
-        Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
-        towerImage = new ImageIcon(newimg);
-        theTile.setIcon(towerImage);
-        theTile.setHasTower();
+    public void placeTower(GameTile theTile, ImageIcon towerImage, int[] data) {
         
-        parentCtrl.getTowerTiles().add(theTile);
+        Tower tower = new Tower(data[0],data[1],data[2]);
+        tower.setIcon(towerImage);
+        tower.setSize(50, 50);
+        tower.setLocation(theTile.getLocation());
+        remove(theTile);
+        add(tower);
+//        Image image = towerImage.getImage();
+//        Image newimg = image.getScaledInstance(50, 50, java.awt.Image.SCALE_SMOOTH);
+//        towerImage = new ImageIcon(newimg);
+//        theTile.setIcon(towerImage);
+//        theTile.setHasTower();
+        
+        parentCtrl.getTowerTiles().add(tower);
         System.out.println(parentCtrl.getTowerTiles().get(parentCtrl.getTowerTiles().size() - 1).getLocation());
     }
 }
