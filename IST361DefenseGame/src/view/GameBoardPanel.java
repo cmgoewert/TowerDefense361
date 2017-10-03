@@ -244,12 +244,12 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                         break;
                     case 1:
                         enemies.add(new Enemy(155,0,50,50,1, enemyPic2));
-                        projectiles.add(new Projectile(25, 25, 25,25, enemies.get(enemyCount)));
+                        projectiles.add(new Projectile(450, 25, 25,25, enemies.get(enemyCount)));
                         enemyCount++;
                         break;
                     case 2:
                         enemies.add(new Enemy(195,0,50,50,2, enemyPic3));
-                        projectiles.add(new Projectile(25, 25, 25,25, enemies.get(enemyCount)));
+                        projectiles.add(new Projectile(25, 300, 25,25, enemies.get(enemyCount)));
                         enemyCount++;
                         break;
                 }

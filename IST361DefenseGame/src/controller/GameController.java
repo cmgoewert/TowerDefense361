@@ -25,6 +25,7 @@ public class GameController {
     
     public GameController(){
         theGameUI = new GameUI(this);
+        theGameUI.getInfoPanel().getStartButton().addActionListener(new StartButtonListener());
         theGameUI.getInfoPanel().getTower1Button().addActionListener(new TowerListener());
         theGameUI.getInfoPanel().getTower2Button().addActionListener(new TowerListener());
         theGameUI.getInfoPanel().getTower3Button().addActionListener(new TowerListener());
@@ -46,12 +47,22 @@ public class GameController {
         this.currentTower = currentTower;
     }
     
+    class StartButtonListener implements ActionListener {
+
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            System.out.println("Next wave starts");        
+        }
+        
+    }
+    
     //TODO: Logic for when it increases when but is killed, decreses when bug is
     // leaves the screen
     class ScoreListener implements ActionListener {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //This infopanel will problaby need to be GameUI.getInfoPanel instead
             infoPanel.getScoreLabel().setText("Test"); //new Score on action
         }
     
@@ -62,6 +73,7 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //This infopanel will problaby need to be GameUI.getInfoPanel instead
             infoPanel.getHealthLabel().setText("Test");
         }
     
@@ -73,6 +85,7 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            //This infopanel will problaby need to be GameUI.getInfoPanel instead
             infoPanel.getMoneyLabel().setText("Test");
         }
     
@@ -94,33 +107,5 @@ public class GameController {
         }
     
     }
-    //TODO: Logic for when tower is placed
-    class PlacementListener implements MouseListener {
 
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void mouseEntered(MouseEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-
-        @Override
-        public void mouseExited(MouseEvent e) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-        }
-    
-    }
 }

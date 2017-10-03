@@ -30,6 +30,7 @@ public class InfoPanel extends JPanel{
     private JButton tower2Button;
     private JButton tower3Button;
     private JLabel emptyLabel;
+    private JButton startButton;
     
     
     public InfoPanel(){
@@ -54,6 +55,7 @@ public class InfoPanel extends JPanel{
         setTower1Button(new JButton("Tower1"));
         setTower2Button(new JButton("Tower2"));
         setTower3Button(new JButton("Tower3"));
+        startButton = new JButton("Next Wave");
 
         c.gridx = 0;
         c.gridy = 0;
@@ -91,6 +93,9 @@ public class InfoPanel extends JPanel{
         c.gridx = 1;
         c.gridy = 6;
         this.add(getTower3Button(), c);
+        c.gridx = 1;
+        c.gridy = 7;
+        this.add(getStartButton(), c);
         
     }
 
@@ -253,5 +258,12 @@ public class InfoPanel extends JPanel{
      */
     public void setTower3Button(JButton tower3Button) {
         this.tower3Button = tower3Button;
+    }
+
+    /**
+     * @return the startButton
+     */
+    public JButton getStartButton() {
+        return startButton;
     }
 }
