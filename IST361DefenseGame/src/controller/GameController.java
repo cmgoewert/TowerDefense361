@@ -5,11 +5,15 @@
  */
 package controller;
 
+import ist361defensegame.Enemy;
+import ist361defensegame.Projectile;
 import ist361defensegame.Tower;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import view.GameUI;
 import view.InfoPanel;
@@ -22,6 +26,13 @@ public class GameController {
     private GameUI gameUI;
     private InfoPanel infoPanel;
     private Tower currentTower;
+    private int enemyCount;
+    private ArrayList<Enemy> enemies;
+    ArrayList<Projectile> projectiles;
+    
+    private File enemyPic1;
+    private File enemyPic2;
+    private File enemyPic3;
     
     public GameController(){
         gameUI = new GameUI(this);
@@ -31,6 +42,12 @@ public class GameController {
         gameUI.getInfoPanel().getTower3Button().addActionListener(new TowerListener());
 
         currentTower = null;
+        
+        projectiles = new ArrayList<>();
+        
+        enemyPic1 = new File("alien2.png");
+        enemyPic2 = new File("alien.png");
+        enemyPic3 = new File("alien3.png");
     }
 
     /**
@@ -51,11 +68,38 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("Next wave starts"); 
+            System.out.println("Next wave starts");
+            if(enemies == null){
+                enemies = new ArrayList<Enemy>();
+            }
+             while(enemyCount < 3){
+                switch (enemyCount){
+                    case 0:
+                        enemies.add(new Enemy(175,0,50,50,0, enemyPic1));
+                        projectiles.add(new Projectile(25, 25, 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
+                        enemyCount ++;
+                        break;
+                    case 1:
+                        enemies.add(new Enemy(155,0,50,50,1, enemyPic2));
+                        projectiles.add(new Projectile(450, 25, 25,25, enemies.get(enemyCount)));
+                        enemyCount++;
+                        break;
+                    case 2:
+                        enemies.add(new Enemy(195,0,50,50,2, enemyPic3));
+                        projectiles.add(new Projectile(25, 300, 25,25, enemies.get(enemyCount)));
+                        enemyCount++;
+                        break;
+                }
+                
+            }
             //gameUI.getGameBoardPanel.getTimers 
             //gameUI.getGameBoardPanel.getOtherThings
         }
         
+    }
+    
+    public ArrayList<Enemy> getEnemies(){
+        return enemies;
     }
     
     //TODO: Logic for when it increases when but is killed, decreses when bug is

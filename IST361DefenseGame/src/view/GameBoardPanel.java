@@ -77,9 +77,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         enemies = new ArrayList<Enemy>();
         projectiles = new ArrayList<>();
         
-//        JLabel background = new JLabel(new ImageIcon("pathBackground.png"));
-//        this.setContentPane(background);
-        
         enemyPic1 = new File("alien2.png");
         enemyPic2 = new File("alien.png");
         enemyPic3 = new File("alien3.png");
@@ -181,6 +178,10 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         super.paintComponent(page);
         
         page.drawImage(img, 0, 0, null);
+        ArrayList<Enemy> enemies = parentCtrl.getEnemies();
+        if(enemies == null){
+            enemies = new ArrayList<Enemy>();
+        }
         //page.drawImage(enemyScaled, 200, 50, null);
         for(Enemy enemy : enemies){           
             enemy.update();
@@ -233,27 +234,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         
          // TODO: When the Enemy's timer fires, create a new Enemy that will persue the player!
         if(i == enemyTimer){
-            while(enemyCount < 3){
-                switch (enemyCount){
-                    case 0:
-                        enemies.add(new Enemy(175,0,50,50,0, enemyPic1));
-                            projectiles.add(new Projectile(25, 25, 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
-                        enemyCount ++;
-                        break;
-                    case 1:
-                        enemies.add(new Enemy(155,0,50,50,1, enemyPic2));
-                        projectiles.add(new Projectile(450, 25, 25,25, enemies.get(enemyCount)));
-                        enemyCount++;
-                        break;
-                    case 2:
-                        enemies.add(new Enemy(195,0,50,50,2, enemyPic3));
-                        projectiles.add(new Projectile(25, 300, 25,25, enemies.get(enemyCount)));
-                        enemyCount++;
-                        break;
-                }
-                
-             ;   
-            }
+        
             
             //155(path 1),175 (path 0),195 (path 2) are the starting positions
         }  
