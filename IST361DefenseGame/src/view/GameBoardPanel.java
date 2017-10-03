@@ -47,7 +47,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     boolean doesExist = false;
     private Timer gameTimer;
     private Timer enemyTimer;
-    private Timer projTimer;
     int countThis = 0;
     Tower tower;
     
@@ -158,8 +157,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         gameTimer.start();
         enemyTimer.start();
         
-        projTimer = new Timer(1000, this);
-        projTimer.start();
         
         this.repaint();
     }

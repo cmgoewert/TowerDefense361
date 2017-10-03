@@ -41,24 +41,27 @@ public class Projectile extends MovingGamePiece {
     }
     @Override
     public void update() {
-
+        int speed = 10;
+        //Depending on where enemy is the x and y will increment or decrement until it is equal
         if(x > enemy.x){
             
-            x -= 10;
+            x -= speed;
             
         } else if(x < enemy.x){
             
-            x += 10;
+            x += speed;
         }
 
         if(y > enemy.y){
 
-            y -= 10;
+            y -= speed;
 
         } else if(y < enemy.y){
             
-            y += 10;
+            y += speed;
         }
+        
+        //TODO: Handle when enemy x and y is equal to proj x and y
     }
 
     @Override
