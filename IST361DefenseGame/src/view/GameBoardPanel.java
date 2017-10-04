@@ -56,9 +56,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     ImageIcon towerImage1;
     ImageIcon towerImage2;
     ImageIcon towerImage3;
-    int[] towerInfo1 = {30,20,100};
-    int[] towerInfo2 = {35,25,150};
-    int[] towerInfo3 = {40,30,200};
+    int[] towerInfo1 = {30,1,100};
+    int[] towerInfo2 = {35,1,150};
+    int[] towerInfo3 = {40,1,200};
     
     private File enemyPic1;
     private File enemyPic2;
@@ -126,7 +126,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             }
         }
         gameTimer = new Timer(1000 / 50, this);
-        projTimer = new Timer(100, this); //Change tower fire rate
+        projTimer = new Timer(50, this); //Change tower fire rate
         
         enemyTimer = new Timer(4000 / 50, this);
         enemyTimer.setDelay(4000);
@@ -221,8 +221,19 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             parentCtrl.addProj();
            
             for(int i = 0; i < parentCtrl.getProjectiles().size(); i++) { 
+                
+                
                 parentCtrl.getProjectiles().get(i).update();
+                
+                
                 if(parentCtrl.getProjectiles().get(i).getFrame().intersects(parentCtrl.getProjectiles().get(i).getEnemy().getFrame())){
+                    parentCtrl.getProjectiles().get(i).getEnemy().decrementEnemyHealth(5);//parentCtrl.getProjectiles().get(i).getTower().getStrength());
+                    
+                    System.out.println(parentCtrl.getProjectiles().get(i).getEnemy().getHealth());
+                    if(parentCtrl.getProjectiles().get(i).getEnemy().getHealth() == 0) {
+                        parentCtrl.getEnemies().remove(0);
+                      
+                    }
                     parentCtrl.getProjectiles().remove(i);
                 }
             }

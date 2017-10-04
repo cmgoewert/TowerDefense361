@@ -44,7 +44,7 @@ public class Projectile extends MovingGamePiece {
     }
     @Override
     public void update() {
-        int speed = 10;
+        int speed = 15;
         int diffX = Math.abs(x - getEnemy().x);
         int diffY = Math.abs(y - getEnemy().y);
         //Depending on where enemy is the x and y will increment or decrement until it is equal

@@ -125,17 +125,17 @@ public class GameController implements ActionListener{
     }
     
     public void addProj() {
-        if(startFlag == true)
-        for(Enemy enemy : enemies){
-            for(Tower tower : towers){
-                int diffX = Math.abs(enemy.x - tower.getX());
-                int diffY = Math.abs(enemy.y - tower.getY());
+        if(startFlag == true) {
+            for(Enemy enemy : enemies){
+                for(Tower tower : towers){
+                    int diffX = Math.abs(enemy.x - tower.getX());
+                    int diffY = Math.abs(enemy.y - tower.getY());
 
-                if(diffX < tower.getRadius() && diffY < tower.getRadius()){
-                    projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemy));
-                }  
+                    if(diffX < tower.getRadius() && diffY < tower.getRadius()){
+                        projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemy));
+                    }  
+                }   
             }
-            
         }
     }
     
@@ -143,44 +143,12 @@ public class GameController implements ActionListener{
         switch (path){
                     case 0:
                         enemies.add(new Enemy(175,0,50,50,0, enemyPic1, health));
-                        //if(gameUI.getTheGameBoard().getGameTimer().isRunning() == true){
-//                        for(Tower tower : towers){
-//                            int diffX = Math.abs(enemies.get(enemyCount).x - tower.getX());
-//                            int diffY = Math.abs(enemies.get(enemyCount).y - tower.getY());
-//                            
-//                            if(diffX < tower.getRadius() && diffY < tower.getRadius()){
-//                                System.out.println("In range");
-//                            }
-//                        }
-                           //projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
-                        //}
                         break;
                     case 1:
                         enemies.add(new Enemy(155,0,50,50,1, enemyPic2, health));
-//                        for(Tower tower : towers){  
-//                            int diffX = Math.abs(enemies.get(enemyCount).x - tower.getX());
-//                            int diffY = Math.abs(enemies.get(enemyCount).y - tower.getY());
-//                            
-//                            if(diffX < tower.getRadius() && diffY < tower.getRadius()){
-//                                System.out.println("In range");
-//                            }
-//                           //projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
-//                        }
                         break;
                     case 2:
-                        enemies.add(new Enemy(195,0,50,50,2, enemyPic3, health));
-//                        for(Tower tower : towers){  
-//                            int diffX = Math.abs(enemies.get(enemyCount).x - tower.getX());
-//                            int diffY = Math.abs(enemies.get(enemyCount).y - tower.getY());
-//                            System.out.println("Tower diffX: " + diffX);
-//                            System.out.println("Tower diffT: " + diffY);
-//                            
-//                            if(diffX < tower.getRadius() && diffY < tower.getRadius()){
-//                                System.out.println("In range");
-//                            }
-//                           //projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
-//                        }
-                        
+                        enemies.add(new Enemy(195,0,50,50,2, enemyPic3, health));                       
                         break;
                 }
     }
