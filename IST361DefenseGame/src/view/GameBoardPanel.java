@@ -47,6 +47,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     boolean doesExist = false;
     private Timer gameTimer;
     private Timer enemyTimer;
+    private Timer projTimer;
     int countThis = 0;
     Tower tower;
     
@@ -56,8 +57,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     ImageIcon towerImage2;
     ImageIcon towerImage3;
     int[] towerInfo1 = {30,20,100};
-    int[] towerInfo2 = {35,25,200};
-    int[] towerInfo3 = {40,30,250};
+    int[] towerInfo2 = {35,25,150};
+    int[] towerInfo3 = {40,30,200};
     
     private File enemyPic1;
     private File enemyPic2;
@@ -125,12 +126,14 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             }
         }
         gameTimer = new Timer(1000 / 50, this);
+        projTimer = new Timer(100, this); //Change tower fire rate
         
         enemyTimer = new Timer(4000 / 50, this);
         enemyTimer.setDelay(4000);
         
-        gameTimer.start();
+        getGameTimer().start();
         enemyTimer.start();
+        projTimer.start();
         
         
         this.repaint();
@@ -196,7 +199,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         Object o = e.getSource();
 
         //The game world updates when the GameTimer event fires
-        if (o == gameTimer) {
+        if (o == getGameTimer()) {
             for(int i = 0; i < enemies.size(); i++){
                 if(enemies.get(i).decrementUsersLife()){
                     enemies.remove(i);
@@ -205,21 +208,24 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                     parentCtrl.setEnemies(enemies);
                 } else {
                     enemies.get(i).update();
-                }
-                
+                }   
             }  
-            for(Projectile proj : parentCtrl.getProjectiles()) { // Updating via gametimer
-                int diffX = Math.abs(proj.getEnemy().x - proj.getTower().getX());
-                int diffY = Math.abs(proj.getEnemy().y - proj.getTower().getY());
-                if(diffX < proj.getTower().getRadius() && diffY < proj.getTower().getRadius())
-                proj.update();
-            }
+
             this.repaint();
             
             if(enemies.isEmpty() && !parentCtrl.getWaveOver()){
                 parentCtrl.endWave();
             }
             //physics.update();   
+        } else if (o == projTimer){
+            parentCtrl.addProj();
+           
+            for(int i = 0; i < parentCtrl.getProjectiles().size(); i++) { 
+                parentCtrl.getProjectiles().get(i).update();
+                if(parentCtrl.getProjectiles().get(i).getFrame().intersects(parentCtrl.getProjectiles().get(i).getEnemy().getFrame())){
+                    parentCtrl.getProjectiles().remove(i);
+                }
+            }
         }
         
         Object i = e.getSource();
@@ -260,5 +266,12 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         
         parentCtrl.getTowerTiles().add(tower);
         System.out.println(parentCtrl.getTowerTiles().get(parentCtrl.getTowerTiles().size() - 1).getLocation());
+    }
+
+    /**
+     * @return the gameTimer
+     */
+    public Timer getGameTimer() {
+        return gameTimer;
     }
 }

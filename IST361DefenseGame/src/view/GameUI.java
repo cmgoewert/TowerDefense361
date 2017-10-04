@@ -35,12 +35,12 @@ public class GameUI extends JFrame{
   
     private void initComponenets() {
         theGameBoard = new GameBoardPanel(gameCtrl);
-        theGameBoard.setSize(600,600);
+        getTheGameBoard().setSize(600,600);
         infoPanel = new InfoPanel();
         
         this.setLayout(new BorderLayout());
         this.add(getInfoPanel(), BorderLayout.EAST);
-        this.add(theGameBoard, BorderLayout.CENTER);
+        this.add(getTheGameBoard(), BorderLayout.CENTER);
         this.pack();
     }
 
@@ -53,7 +53,7 @@ public class GameUI extends JFrame{
     
     public void gameOver(int level){
         System.out.println("game over called");
-        this.remove(theGameBoard);
+        this.remove(getTheGameBoard());
         JLabel gameOver = new JLabel("GAME OVER!!!");
         gameOver.setForeground(Color.red);
         gameOver.setFont(new Font("Courier New", Font.BOLD, 36));
@@ -67,5 +67,12 @@ public class GameUI extends JFrame{
         gameOverPanel.add(gameOver, BorderLayout.CENTER);
         gameOverPanel.add(results, BorderLayout.SOUTH);
         this.add(gameOverPanel,BorderLayout.CENTER);
+    }
+
+    /**
+     * @return the theGameBoard
+     */
+    public GameBoardPanel getTheGameBoard() {
+        return theGameBoard;
     }
 }

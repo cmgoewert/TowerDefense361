@@ -35,6 +35,7 @@ public class GameController implements ActionListener{
     private int currentLevel;
     private int lives;
     private int money;
+    private boolean startFlag = false;
     
     private File enemyPic1;
     private File enemyPic2;
@@ -123,25 +124,62 @@ public class GameController implements ActionListener{
         //infopanel needs to be updated here with lives left
     }
     
+    public void addProj() {
+        if(startFlag == true)
+        for(Enemy enemy : enemies){
+            for(Tower tower : towers){
+                int diffX = Math.abs(enemy.x - tower.getX());
+                int diffY = Math.abs(enemy.y - tower.getY());
+
+                if(diffX < tower.getRadius() && diffY < tower.getRadius()){
+                    projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemy));
+                }  
+            }
+            
+        }
+    }
+    
     private void addEnemy(int health, int path){
         switch (path){
                     case 0:
                         enemies.add(new Enemy(175,0,50,50,0, enemyPic1, health));
-                        for(Tower tower : towers){  
-                           projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
-                        }
+                        //if(gameUI.getTheGameBoard().getGameTimer().isRunning() == true){
+//                        for(Tower tower : towers){
+//                            int diffX = Math.abs(enemies.get(enemyCount).x - tower.getX());
+//                            int diffY = Math.abs(enemies.get(enemyCount).y - tower.getY());
+//                            
+//                            if(diffX < tower.getRadius() && diffY < tower.getRadius()){
+//                                System.out.println("In range");
+//                            }
+//                        }
+                           //projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
+                        //}
                         break;
                     case 1:
                         enemies.add(new Enemy(155,0,50,50,1, enemyPic2, health));
-                        for(Tower tower : towers){  
-                           projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
-                        }
+//                        for(Tower tower : towers){  
+//                            int diffX = Math.abs(enemies.get(enemyCount).x - tower.getX());
+//                            int diffY = Math.abs(enemies.get(enemyCount).y - tower.getY());
+//                            
+//                            if(diffX < tower.getRadius() && diffY < tower.getRadius()){
+//                                System.out.println("In range");
+//                            }
+//                           //projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
+//                        }
                         break;
                     case 2:
                         enemies.add(new Enemy(195,0,50,50,2, enemyPic3, health));
-                        for(Tower tower : towers){  
-                           projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
-                        }
+//                        for(Tower tower : towers){  
+//                            int diffX = Math.abs(enemies.get(enemyCount).x - tower.getX());
+//                            int diffY = Math.abs(enemies.get(enemyCount).y - tower.getY());
+//                            System.out.println("Tower diffX: " + diffX);
+//                            System.out.println("Tower diffT: " + diffY);
+//                            
+//                            if(diffX < tower.getRadius() && diffY < tower.getRadius()){
+//                                System.out.println("In range");
+//                            }
+//                           //projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
+//                        }
                         
                         break;
                 }
@@ -149,13 +187,14 @@ public class GameController implements ActionListener{
     
     public void endWave(){
         System.out.println("called endwave");
+        //startFlag = false;
         waveOver = true;
         money += currentLevel * 200;
         
     }
 
     public void startNewWave() {
-        
+        startFlag = true;
         enemyCount = 0;
         waveEnemyCount = currentLevel * 3;
 
