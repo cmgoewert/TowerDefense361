@@ -270,4 +270,8 @@ public class InfoPanel extends JPanel{
     public JButton getStartButton() {
         return startButton;
     }
+    
+    public void setHealth(String health){
+        setHealthLabel(new JLabel("Health: " + health));
+    }
 }

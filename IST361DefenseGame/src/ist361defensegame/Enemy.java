@@ -38,6 +38,21 @@ public class Enemy extends MovingGamePiece{
         init();
     }
     
+    public boolean decrementUsersLife(){
+        if(stage == 3 && x < 0)
+            return true;
+        else
+            return false;
+    }
+    
+    public void decrementEnemyHealth(int decAmount){
+        health -= decAmount;
+    }
+    
+    public int getHealth(){
+        return health;
+    }
+    
     private void init(){
         image = null;
         enemyScaled = null;

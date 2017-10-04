@@ -7,7 +7,11 @@ package view;
 
 import controller.GameController;
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Font;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
 /**
  *
@@ -45,5 +49,23 @@ public class GameUI extends JFrame{
      */
     public InfoPanel getInfoPanel() {
         return infoPanel;
+    }
+    
+    public void gameOver(int level){
+        System.out.println("game over called");
+        this.remove(theGameBoard);
+        JLabel gameOver = new JLabel("GAME OVER!!!");
+        gameOver.setForeground(Color.red);
+        gameOver.setFont(new Font("Courier New", Font.BOLD, 36));
+        gameOver.setHorizontalAlignment(JLabel.CENTER);
+        JLabel results = new JLabel("You made it to: Level " + level);
+        results.setVerticalAlignment(JLabel.TOP);
+        results.setVerticalTextPosition(JLabel.TOP);
+        results.setHorizontalAlignment(JLabel.CENTER);
+        JPanel gameOverPanel = new JPanel();
+        gameOverPanel.setLayout(new BorderLayout());
+        gameOverPanel.add(gameOver, BorderLayout.CENTER);
+        gameOverPanel.add(results, BorderLayout.SOUTH);
+        this.add(gameOverPanel,BorderLayout.CENTER);
     }
 }

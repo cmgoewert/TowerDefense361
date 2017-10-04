@@ -160,7 +160,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         }
         //page.drawImage(enemyScaled, 200, 50, null);
         for(Enemy enemy : enemies){           
-            enemy.update();
+            //enemy.update();
             enemy.draw(page);
         }
               
@@ -189,12 +189,24 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     
     @Override
     public void actionPerformed(ActionEvent e) {
+        enemies = parentCtrl.getEnemies();
+        if(enemies == null){
+            enemies = new ArrayList<Enemy>();
+        }
         Object o = e.getSource();
 
         //The game world updates when the GameTimer event fires
         if (o == gameTimer) {
-            for(Enemy enemy : enemies){
-                enemy.update();
+            for(int i = 0; i < enemies.size(); i++){
+                if(enemies.get(i).decrementUsersLife()){
+                    enemies.remove(i);
+                    System.out.println("removed enemy");
+                    parentCtrl.decrementHealth();
+                    parentCtrl.setEnemies(enemies);
+                } else {
+                    enemies.get(i).update();
+                }
+                
             }  
             for(Projectile proj : parentCtrl.getProjectiles()) { // Updating via gametimer
                 int diffX = Math.abs(proj.getEnemy().x - proj.getTower().getX());
@@ -203,6 +215,10 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                 proj.update();
             }
             this.repaint();
+            
+            if(enemies.isEmpty() && !parentCtrl.getWaveOver()){
+                parentCtrl.endWave();
+            }
             //physics.update();   
         }
         

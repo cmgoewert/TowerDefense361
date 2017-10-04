@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import javax.swing.Timer;
 import view.GameTile;
 import view.GameUI;
 import view.InfoPanel;
@@ -20,7 +21,7 @@ import view.InfoPanel;
  *
  * @author cmg5831
  */
-public class GameController {
+public class GameController implements ActionListener{
     private GameUI gameUI;
     private InfoPanel infoPanel;
     private Tower currentTower;
@@ -28,7 +29,12 @@ public class GameController {
     private ArrayList<Enemy> enemies;
     private ArrayList<Projectile> projectiles;
     private ArrayList<Tower> towers;
-    boolean waveOver = false;
+    boolean waveOver = true;
+    private Timer waveTimer;
+    private int waveEnemyCount;
+    private int currentLevel;
+    private int lives;
+    private int money;
     
     private File enemyPic1;
     private File enemyPic2;
@@ -42,6 +48,7 @@ public class GameController {
         gameUI.getInfoPanel().getTower3Button().addActionListener(new TowerListener());
 
         currentTower = null;
+        currentLevel = 1;
         
         projectiles = new ArrayList<>();
         towers = new ArrayList<>();
@@ -49,6 +56,9 @@ public class GameController {
         enemyPic1 = new File("alien2.png");
         enemyPic2 = new File("alien.png");
         enemyPic3 = new File("alien3.png");
+        
+        lives = 20;
+        
     }
 
     /**
@@ -64,6 +74,10 @@ public class GameController {
     public void setCurrentTower(Tower currentTower) {
         this.currentTower = currentTower;
     }
+    
+    public boolean getWaveOver(){
+        return waveOver;
+    }
 
     /**
      * @return the towers
@@ -76,51 +90,86 @@ public class GameController {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(!waveOver)
-                startNewWave(1);
+            if(waveOver)
+                startNewWave();
         }
         
     }
     
-    public void startNewWave(int level){
-        enemyCount = 0;
-        int waveEnemyCount = level * 3;
-
-            if(enemies == null){
-                enemies = new ArrayList<Enemy>();
-            }
-             while(enemyCount < waveEnemyCount){
-                 //Possibly For loop in each case taht generates projectiles for each enemies
-                switch (enemyCount){
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if(enemyCount < waveEnemyCount){
+            addEnemy(currentLevel * 100, 0 + (int)(Math.random() * ((2 - 0) + 1)));
+            enemyCount++;
+        } else {
+            waveTimer.stop();
+        }
+        
+    }
+    
+    public void decrementHealth(){
+        lives--;
+        if(lives == 0){
+            gameUI.gameOver(currentLevel);
+            gameUI.revalidate();
+            gameUI.repaint();
+        }
+        System.out.println("Lives remaining: " + lives);
+        
+        //infopanel needs to be updated here with lives left
+    }
+    
+    private void addEnemy(int health, int path){
+        switch (path){
                     case 0:
-                        enemies.add(new Enemy(175,0,50,50,0, enemyPic1, 100));
+                        enemies.add(new Enemy(175,0,50,50,0, enemyPic1, health));
                         for(Tower tower : towers){  
                            projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
                         }
-                         
-                        enemyCount ++;
                         break;
                     case 1:
-                        enemies.add(new Enemy(155,0,50,50,1, enemyPic2, 100));
+                        enemies.add(new Enemy(155,0,50,50,1, enemyPic2, health));
                         for(Tower tower : towers){  
                            projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
                         }
-                        enemyCount++;
                         break;
                     case 2:
-                        enemies.add(new Enemy(195,0,50,50,2, enemyPic3, 100));
+                        enemies.add(new Enemy(195,0,50,50,2, enemyPic3, health));
                         for(Tower tower : towers){  
                            projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(enemyCount))); //The location of this may have to change when towers are added
                         }
-                        enemyCount++;
+                        
                         break;
                 }
-                
-            }
+    }
+    
+    public void endWave(){
+        waveOver = true;
+        money += currentLevel * 200;
+        currentLevel++;
+    }
+
+    public void startNewWave() {
+        waveOver = false;
+        enemyCount = 0;
+        waveEnemyCount = currentLevel * 3;
+
+        if (enemies == null) {
+            enemies = new ArrayList<Enemy>();
+        }
+        
+        waveTimer = new Timer(400, this);
+        waveTimer.start();
+        
+
     }
     
     public ArrayList<Enemy> getEnemies(){
         return enemies;
+    }
+    
+    public void setEnemies(ArrayList<Enemy> newEnemies){
+        this.enemies = newEnemies;
     }
     
     public ArrayList<Projectile> getProjectiles(){
