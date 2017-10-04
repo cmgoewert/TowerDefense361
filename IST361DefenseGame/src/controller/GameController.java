@@ -29,7 +29,7 @@ public class GameController implements ActionListener{
     private ArrayList<Enemy> enemies;
     private ArrayList<Projectile> projectiles;
     private ArrayList<Tower> towers;
-    boolean waveOver = true;
+    boolean waveOver;
     private Timer waveTimer;
     private int waveEnemyCount;
     private int currentLevel;
@@ -49,6 +49,8 @@ public class GameController implements ActionListener{
 
         currentTower = null;
         currentLevel = 1;
+        
+        waveOver = true;
         
         projectiles = new ArrayList<>();
         towers = new ArrayList<>();
@@ -90,8 +92,9 @@ public class GameController implements ActionListener{
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            if(waveOver)
+            if(waveOver){
                 startNewWave();
+            }
         }
         
     }
@@ -101,6 +104,7 @@ public class GameController implements ActionListener{
         if(enemyCount < waveEnemyCount){
             addEnemy(currentLevel * 100, 0 + (int)(Math.random() * ((2 - 0) + 1)));
             enemyCount++;
+            waveOver = false;
         } else {
             waveTimer.stop();
         }
@@ -144,13 +148,14 @@ public class GameController implements ActionListener{
     }
     
     public void endWave(){
+        System.out.println("called endwave");
         waveOver = true;
         money += currentLevel * 200;
-        currentLevel++;
+        
     }
 
     public void startNewWave() {
-        waveOver = false;
+        
         enemyCount = 0;
         waveEnemyCount = currentLevel * 3;
 
@@ -160,8 +165,9 @@ public class GameController implements ActionListener{
         
         waveTimer = new Timer(400, this);
         waveTimer.start();
+        waveOver = false;
         
-
+        currentLevel++;
     }
     
     public ArrayList<Enemy> getEnemies(){

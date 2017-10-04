@@ -58,7 +58,7 @@ public class GameUI extends JFrame{
         gameOver.setForeground(Color.red);
         gameOver.setFont(new Font("Courier New", Font.BOLD, 36));
         gameOver.setHorizontalAlignment(JLabel.CENTER);
-        JLabel results = new JLabel("You made it to: Level " + level);
+        JLabel results = new JLabel("You made it to: Level " + (level -1));
         results.setVerticalAlignment(JLabel.TOP);
         results.setVerticalTextPosition(JLabel.TOP);
         results.setHorizontalAlignment(JLabel.CENTER);
