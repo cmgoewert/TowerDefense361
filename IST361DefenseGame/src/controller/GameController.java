@@ -29,7 +29,7 @@ public class GameController implements ActionListener{
     private int[] towerInfo;
     private boolean towerPlaceable = false;
     private int enemyCount;
-    private ArrayList<Projectile> projectiles;
+    private LinkedList<Projectile> projectiles;
     private ArrayList<Tower> towers;
     boolean waveOver;
     private Timer waveTimer;
@@ -56,7 +56,7 @@ public class GameController implements ActionListener{
         
         waveOver = true;
         enemies = new LinkedList<Enemy>();
-        projectiles = new ArrayList<>();
+        projectiles = new LinkedList<>();
         towers = new ArrayList<>();
         
         enemyPic1 = new File("alien2.png");
@@ -187,7 +187,7 @@ public class GameController implements ActionListener{
         this.enemies = newEnemies;
     }
     
-    public ArrayList<Projectile> getProjectiles(){
+    public LinkedList<Projectile> getProjectiles(){
         return projectiles;
     }
     
