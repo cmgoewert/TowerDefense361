@@ -29,7 +29,6 @@ public class GameController implements ActionListener{
     private int[] towerInfo;
     private boolean towerPlaceable = false;
     private int enemyCount;
-   // private ArrayList<Enemy> enemies;
     private ArrayList<Projectile> projectiles;
     private ArrayList<Tower> towers;
     boolean waveOver;
@@ -180,14 +179,6 @@ public class GameController implements ActionListener{
         
         currentLevel++;
     }
-    
-   /* public ArrayList<Enemy> getEnemies(){
-        return enemies;
-    }
-    
-    public void setEnemies(ArrayList<Enemy> newEnemies){
-        this.enemies = newEnemies;
-    }*/
     public LinkedList<Enemy> getEnemies(){
         return enemies;
     }
