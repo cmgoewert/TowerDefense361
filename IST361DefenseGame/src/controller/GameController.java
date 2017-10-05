@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import javax.swing.Timer;
 import view.GameTile;
 import view.GameUI;
@@ -28,7 +29,7 @@ public class GameController implements ActionListener{
     private int[] towerInfo;
     private boolean towerPlaceable = false;
     private int enemyCount;
-    private ArrayList<Enemy> enemies;
+   // private ArrayList<Enemy> enemies;
     private ArrayList<Projectile> projectiles;
     private ArrayList<Tower> towers;
     boolean waveOver;
@@ -38,6 +39,7 @@ public class GameController implements ActionListener{
     private int lives;
     private int money = 200;
     private boolean startFlag = false;
+    LinkedList<Enemy> enemies;
     
     private File enemyPic1;
     private File enemyPic2;
@@ -54,7 +56,7 @@ public class GameController implements ActionListener{
         currentLevel = 1;
         
         waveOver = true;
-        
+        enemies = new LinkedList<Enemy>();
         projectiles = new ArrayList<>();
         towers = new ArrayList<>();
         
@@ -168,7 +170,8 @@ public class GameController implements ActionListener{
         waveEnemyCount = currentLevel * 3;
 
         if (enemies == null) {
-            enemies = new ArrayList<Enemy>();
+           // enemies = new ArrayList<Enemy>();
+           enemies = new LinkedList<Enemy>();
         }
         
         waveTimer = new Timer(400, this);
@@ -178,11 +181,18 @@ public class GameController implements ActionListener{
         currentLevel++;
     }
     
-    public ArrayList<Enemy> getEnemies(){
+   /* public ArrayList<Enemy> getEnemies(){
         return enemies;
     }
     
     public void setEnemies(ArrayList<Enemy> newEnemies){
+        this.enemies = newEnemies;
+    }*/
+    public LinkedList<Enemy> getEnemies(){
+        return enemies;
+    }
+    
+    public void setEnemies(LinkedList<Enemy> newEnemies){
         this.enemies = newEnemies;
     }
     

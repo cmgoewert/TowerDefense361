@@ -23,6 +23,7 @@ import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -36,7 +37,7 @@ import javax.swing.Timer;
  */
 public class GameBoardPanel extends JPanel  implements ActionListener{
     ArrayList<GameTile> theTiles = new ArrayList<GameTile>();
-    ArrayList<Enemy> enemies;
+    LinkedList<Enemy> enemies;
     GameController parentCtrl;
     int enemyCount = 0;
     GridLayout theLayout;
@@ -79,7 +80,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     
     private void initComponents(){
         this.setBorder(BorderFactory.createRaisedBevelBorder());
-        enemies = new ArrayList<Enemy>();
+        enemies = new LinkedList<Enemy>();
         
         enemyPic1 = new File("alien2.png");
         enemyPic2 = new File("alien.png");
@@ -157,9 +158,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         super.paintComponent(page);
         
         page.drawImage(img, 0, 0, null);
-        ArrayList<Enemy> enemies = parentCtrl.getEnemies();
+        LinkedList<Enemy> enemies = parentCtrl.getEnemies();
         if(enemies == null){
-            enemies = new ArrayList<Enemy>();
+            enemies = new LinkedList<Enemy>();
         }
         //page.drawImage(enemyScaled, 200, 50, null);
         for(Enemy enemy : enemies){           
@@ -194,7 +195,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         enemies = parentCtrl.getEnemies();
         if(enemies == null){
-            enemies = new ArrayList<Enemy>();
+            enemies = new LinkedList<Enemy>();
         }
         Object o = e.getSource();
 
