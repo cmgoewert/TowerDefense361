@@ -121,7 +121,8 @@ public class GameController implements ActionListener{
         }
         System.out.println("Lives remaining: " + lives);
         
-        gameUI.getInfoPanel().setHealth(lives);
+        gameUI.getInfoPanel().getHealthLabel().setText("Health: " + lives);
+        gameUI.getInfoPanel().revalidate();
         gameUI.getInfoPanel().repaint();
         //infopanel needs to be updated here with lives left
     }
