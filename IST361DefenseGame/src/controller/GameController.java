@@ -82,7 +82,7 @@ public class GameController implements ActionListener{
         return towers;
     }
 
-    boolean isTowerPlaceable() {
+    public boolean isTowerPlaceable() {
         return towerPlaceable;
     }
 
