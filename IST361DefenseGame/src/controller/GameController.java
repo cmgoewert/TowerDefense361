@@ -239,6 +239,9 @@ public class GameController implements ActionListener{
         }
     
     }
+    public void setMoney() {
+            money = money - towerInfo[0];
+        }
     //TODO: Logic for when certain tower is selected
     class TowerListener implements ActionListener {
         @Override
@@ -247,9 +250,9 @@ public class GameController implements ActionListener{
                 towerInfo = gameUI.getTheGameBoard().getTowerInfo1();
                 if (money >= towerInfo[0]) {
                     setCurrentTower(currentTower.getTowerOne());
-                    money = money - towerInfo[0];
                     System.out.println(money);
                     setTowerPlaceable(true);
+                    //gameUI.getInfoPanel().setMoneyLabel(money);
                 } else {
                     System.out.println("not enough money");
                     setTowerPlaceable(false);
@@ -259,7 +262,6 @@ public class GameController implements ActionListener{
                 towerInfo = gameUI.getTheGameBoard().getTowerInfo2();
                 if (money >= towerInfo[0]) {
                     setCurrentTower(currentTower.getTowerTwo()); 
-                    money = money - towerInfo[0];
                     System.out.println(money);
                     setTowerPlaceable(true);
                 } else {
@@ -271,7 +273,6 @@ public class GameController implements ActionListener{
                 towerInfo = gameUI.getTheGameBoard().getTowerInfo3();
                 if (money >= towerInfo[0]) {
                     setCurrentTower(currentTower.getTowerThree()); 
-                    money = money - towerInfo[0];
                     System.out.println(money);
                     setTowerPlaceable(true);
                 } else {
@@ -279,8 +280,10 @@ public class GameController implements ActionListener{
                     setTowerPlaceable(false);
                 }  
             }
+            
         }
-    
+        
+        
     }
 
 }

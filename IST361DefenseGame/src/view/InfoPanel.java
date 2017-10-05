@@ -43,10 +43,11 @@ public class InfoPanel extends JPanel{
         c.anchor = GridBagConstraints.WEST;
         c.insets = new Insets(3,3,3,3);
         
+        moneyLabel = new JLabel();
+        setMoneyLabel(200);
         setNameLabel(new JLabel("Name: "));
         setEmptyLabel(new JLabel(" "));
-        setScoreLabel(new JLabel("Score: "));
-        setMoneyLabel(new JLabel("Money: "));
+        setScoreLabel(new JLabel("Score: "));        
         setHealthLabel(new JLabel("Health: "));
         setDifficultyLabel(new JLabel("Difficulty: "));
         setTower1Label(new JLabel("Tower 1: "));
@@ -141,8 +142,8 @@ public class InfoPanel extends JPanel{
     /**
      * @param moneyLabel the moneyLabel to set
      */
-    public void setMoneyLabel(JLabel moneyLabel) {
-        this.moneyLabel = moneyLabel;
+    public void setMoneyLabel(int money) {
+        moneyLabel.setText("Money: $" + String.valueOf(money));
     }
 
     /**

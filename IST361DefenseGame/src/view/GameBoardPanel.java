@@ -260,7 +260,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         return exists;
     }  
     
-    //Function to place tower 
     public void placeTower(GameTile theTile, ImageIcon towerImage, int[] data) {
         
         Tower tower = new Tower(data[0],data[1],data[2]);
@@ -271,6 +270,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         add(tower);
         parentCtrl.getTowerTiles().add(tower);
         parentCtrl.setTowerPlaceable(false);
+        parentCtrl.setMoney();
         System.out.println(parentCtrl.getTowerTiles().get(parentCtrl.getTowerTiles().size() - 1).getLocation());
     }
 
