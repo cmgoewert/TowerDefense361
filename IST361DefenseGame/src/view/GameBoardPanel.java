@@ -57,7 +57,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     ImageIcon towerImage2;
     ImageIcon towerImage3;
     private int[] towerInfo1 = {100,2,100};
-    private int[] towerInfo2 = {150,1/2,150};
+    private int[] towerInfo2 = {150,1,150};
     private int[] towerInfo3 = {300,1,200};
     
     private File enemyPic1;
