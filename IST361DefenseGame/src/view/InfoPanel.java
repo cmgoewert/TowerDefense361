@@ -31,6 +31,9 @@ public class InfoPanel extends JPanel{
     private JButton tower3Button;
     private JLabel emptyLabel;
     private JButton startButton;
+    private int score;
+    private int health;
+    private int money;
    
     
     public InfoPanel(){
@@ -42,13 +45,16 @@ public class InfoPanel extends JPanel{
         GridBagConstraints c = new GridBagConstraints();
         c.anchor = GridBagConstraints.WEST;
         c.insets = new Insets(3,3,3,3);
+        setScore(0);
+        setHealth(20);
+        
         
         moneyLabel = new JLabel();
         setMoneyLabel(200);
         setNameLabel(new JLabel("Name: "));
         setEmptyLabel(new JLabel(" "));
-        setScoreLabel(new JLabel("Score: "));        
-        setHealthLabel(new JLabel("Health: "));
+        setScoreLabel(new JLabel("Score: " + getScore()));        
+        setHealthLabel(new JLabel("Health: " + getHealth()));
         setDifficultyLabel(new JLabel("Difficulty: "));
         setTower1Label(new JLabel("Tower 1: "));
         setTower2Label(new JLabel("Tower 2: "));
@@ -274,5 +280,33 @@ public class InfoPanel extends JPanel{
     
     public void setHealth(String health){
         setHealthLabel(new JLabel("Health: " + health));
+    }
+
+    /**
+     * @return the score
+     */
+    public int getScore() {
+        return score;
+    }
+
+    /**
+     * @param score the score to set
+     */
+    public void setScore(int score) {
+        this.score = score;
+    }
+
+    /**
+     * @return the health
+     */
+    public int getHealth() {
+        return health;
+    }
+
+    /**
+     * @param health the health to set
+     */
+    public void setHealth(int health) {
+        this.health = health;
     }
 }

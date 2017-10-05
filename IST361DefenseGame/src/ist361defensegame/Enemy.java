@@ -62,7 +62,7 @@ public class Enemy extends MovingGamePiece{
         } catch (IOException ex) {
             System.out.println("caught");
         }
-        this.setSpeed(3,3);
+        this.setSpeed(6,6);
     }
 
     @Override

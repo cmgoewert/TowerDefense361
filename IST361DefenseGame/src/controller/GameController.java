@@ -121,6 +121,8 @@ public class GameController implements ActionListener{
         }
         System.out.println("Lives remaining: " + lives);
         
+        gameUI.getInfoPanel().setHealth(lives);
+        gameUI.getInfoPanel().repaint();
         //infopanel needs to be updated here with lives left
     }
     
@@ -132,7 +134,7 @@ public class GameController implements ActionListener{
                     int diffY = Math.abs(enemy.y - tower.getY());
 
                     if(diffX < tower.getRadius() && diffY < tower.getRadius()){
-                        projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemy));
+                        projectiles.add(new Projectile(tower, tower.getX(), tower.getY(), 25,25, enemies.get(0)));
                     }  
                 }   
             }
@@ -197,17 +199,6 @@ public class GameController implements ActionListener{
         public void actionPerformed(ActionEvent e) {
             //This infopanel will problaby need to be gameUI.getInfoPanel instead
             infoPanel.getScoreLabel().setText("Test"); //new Score on action
-        }
-    
-    }
-    
-    //TODO: Logic for when it decreses when bug is leaves the screen
-    class HealthListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //This infopanel will problaby need to be GameUI.getInfoPanel instead
-            infoPanel.getHealthLabel().setText("Test");
         }
     
     }
