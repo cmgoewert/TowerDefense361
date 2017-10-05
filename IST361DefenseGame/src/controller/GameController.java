@@ -66,16 +66,10 @@ public class GameController implements ActionListener{
         
     }
 
-    /**
-     * @return the currentTower
-     */
     public Tower getCurrentTower() {
         return currentTower;
     }
 
-    /**
-     * @param currentTower the currentTower to set
-     */
     public void setCurrentTower(Tower currentTower) {
         this.currentTower = currentTower;
     }
@@ -84,23 +78,14 @@ public class GameController implements ActionListener{
         return waveOver;
     }
 
-    /**
-     * @return the towers
-     */
     public ArrayList<Tower> getTowerTiles() {
         return towers;
     }
 
-    /**
-     * @return the towerPlaceable
-     */
-    public boolean isTowerPlaceable() {
+    boolean isTowerPlaceable() {
         return towerPlaceable;
     }
 
-    /**
-     * @param towerPlaceable the towerPlaceable to set
-     */
     public void setTowerPlaceable(boolean towerPlaceable) {
         this.towerPlaceable = towerPlaceable;
     }
@@ -112,8 +97,7 @@ public class GameController implements ActionListener{
             if(waveOver){
                 startNewWave();
             }
-        }
-        
+        }       
     }
     
     @Override
@@ -250,11 +234,9 @@ public class GameController implements ActionListener{
                 towerInfo = gameUI.getTheGameBoard().getTowerInfo1();
                 if (money >= towerInfo[0]) {
                     setCurrentTower(currentTower.getTowerOne());
-                    System.out.println(money);
                     setTowerPlaceable(true);
-                    //gameUI.getInfoPanel().setMoneyLabel(money);
+                    //gameUI.getInfoPanel().setMoneyLabel(money); --- not sure why this isn't working
                 } else {
-                    System.out.println("not enough money");
                     setTowerPlaceable(false);
                 } 
             }
@@ -262,10 +244,8 @@ public class GameController implements ActionListener{
                 towerInfo = gameUI.getTheGameBoard().getTowerInfo2();
                 if (money >= towerInfo[0]) {
                     setCurrentTower(currentTower.getTowerTwo()); 
-                    System.out.println(money);
                     setTowerPlaceable(true);
                 } else {
-                    System.out.println("not enough money");
                     setTowerPlaceable(false);
                 }           
             } 
@@ -273,16 +253,13 @@ public class GameController implements ActionListener{
                 towerInfo = gameUI.getTheGameBoard().getTowerInfo3();
                 if (money >= towerInfo[0]) {
                     setCurrentTower(currentTower.getTowerThree()); 
-                    System.out.println(money);
                     setTowerPlaceable(true);
                 } else {
-                    System.out.println("not enough money");
                     setTowerPlaceable(false);
                 }  
             }
             
         }
-        
         
     }
 
