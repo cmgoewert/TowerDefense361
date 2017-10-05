@@ -18,8 +18,8 @@ public class NavigationController {
     public NavigationController(){
         theMainMenu = new MainFrame(this);
     }
-    
-    public void startGame(){
+    //implement userName
+    public void startGame(String userName){
         GameController gc = new GameController();
         theMainMenu.setVisible(false);
     }

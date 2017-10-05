@@ -113,7 +113,7 @@ public class MenuUI extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         JButton eventSource = (JButton) e.getSource();
         //TODO: add difficulty functionality
-        navController.startGame();
+        navController.startGame(nameField.getText());
         if (eventSource == difficulty.get(0)) { //easy difficulty
             //TODO pass diff to nav controller
         }
