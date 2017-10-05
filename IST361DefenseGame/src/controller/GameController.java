@@ -25,6 +25,8 @@ public class GameController implements ActionListener{
     private GameUI gameUI;
     private InfoPanel infoPanel;
     private Tower currentTower;
+    private int[] towerInfo;
+    private boolean towerPlaceable = false;
     private int enemyCount;
     private ArrayList<Enemy> enemies;
     private ArrayList<Projectile> projectiles;
@@ -34,7 +36,7 @@ public class GameController implements ActionListener{
     private int waveEnemyCount;
     private int currentLevel;
     private int lives;
-    private int money;
+    private int money = 200;
     private boolean startFlag = false;
     
     private File enemyPic1;
@@ -87,6 +89,20 @@ public class GameController implements ActionListener{
      */
     public ArrayList<Tower> getTowerTiles() {
         return towers;
+    }
+
+    /**
+     * @return the towerPlaceable
+     */
+    public boolean isTowerPlaceable() {
+        return towerPlaceable;
+    }
+
+    /**
+     * @param towerPlaceable the towerPlaceable to set
+     */
+    public void setTowerPlaceable(boolean towerPlaceable) {
+        this.towerPlaceable = towerPlaceable;
     }
     
     class StartButtonListener implements ActionListener {
@@ -227,16 +243,42 @@ public class GameController implements ActionListener{
     class TowerListener implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            if (e.getSource() == gameUI.getInfoPanel().getTower1Button()) {
-                setCurrentTower(currentTower.getTowerOne());
+            if (e.getSource() == gameUI.getInfoPanel().getTower1Button()) {               
+                towerInfo = gameUI.getTheGameBoard().getTowerInfo1();
+                if (money >= towerInfo[0]) {
+                    setCurrentTower(currentTower.getTowerOne());
+                    money = money - towerInfo[0];
+                    System.out.println(money);
+                    setTowerPlaceable(true);
+                } else {
+                    System.out.println("not enough money");
+                    setTowerPlaceable(false);
+                } 
             }
             else if (e.getSource() == gameUI.getInfoPanel().getTower2Button()) {
-                setCurrentTower(currentTower.getTowerTwo());            
+                towerInfo = gameUI.getTheGameBoard().getTowerInfo2();
+                if (money >= towerInfo[0]) {
+                    setCurrentTower(currentTower.getTowerTwo()); 
+                    money = money - towerInfo[0];
+                    System.out.println(money);
+                    setTowerPlaceable(true);
+                } else {
+                    System.out.println("not enough money");
+                    setTowerPlaceable(false);
+                }           
             } 
             else {
-                setCurrentTower(currentTower.getTowerThree());
+                towerInfo = gameUI.getTheGameBoard().getTowerInfo3();
+                if (money >= towerInfo[0]) {
+                    setCurrentTower(currentTower.getTowerThree()); 
+                    money = money - towerInfo[0];
+                    System.out.println(money);
+                    setTowerPlaceable(true);
+                } else {
+                    System.out.println("not enough money");
+                    setTowerPlaceable(false);
+                }  
             }
-                  
         }
     
     }

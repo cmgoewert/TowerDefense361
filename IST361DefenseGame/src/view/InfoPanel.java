@@ -31,7 +31,7 @@ public class InfoPanel extends JPanel{
     private JButton tower3Button;
     private JLabel emptyLabel;
     private JButton startButton;
-    
+   
     
     public InfoPanel(){
         initComponents();
