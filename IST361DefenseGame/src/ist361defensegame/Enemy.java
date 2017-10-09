@@ -46,6 +46,7 @@ public class Enemy extends MovingGamePiece{
     }
     
     public void decrementEnemyHealth(int decAmount){
+        
         health -= decAmount;
     }
     
@@ -62,7 +63,7 @@ public class Enemy extends MovingGamePiece{
         } catch (IOException ex) {
             System.out.println("caught");
         }
-        this.setSpeed(6,6);
+        this.setSpeed(5,5);
     }
 
     @Override

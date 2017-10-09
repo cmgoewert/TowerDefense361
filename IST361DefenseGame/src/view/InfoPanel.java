@@ -54,7 +54,8 @@ public class InfoPanel extends JPanel{
         setNameLabel(new JLabel("Name: "));
         setEmptyLabel(new JLabel(" "));
         setScoreLabel(new JLabel("Score: " + getScore()));        
-        setHealthLabel(new JLabel("Health: " + getHealth()));
+        //setHealthLabel(new JLabel("Health: " + getHealth()));
+        healthLabel = new JLabel(Integer.toString(getHealth()));
         setDifficultyLabel(new JLabel("Difficulty: "));
         setTower1Label(new JLabel("Tower 1: "));
         setTower2Label(new JLabel("Tower 2: "));
@@ -75,7 +76,7 @@ public class InfoPanel extends JPanel{
         this.add(getMoneyLabel(), c);
         c.gridx = 1;
         c.gridy = 1;
-        this.add(getHealthLabel(), c);
+        this.add(healthLabel, c);
         c.gridx = 0;
         c.gridy = 2;
         this.add(getDifficultyLabel(), c);
@@ -156,6 +157,7 @@ public class InfoPanel extends JPanel{
      * @return the healthLabel
      */
     public JLabel getHealthLabel() {
+        
         return healthLabel;
     }
 
@@ -277,11 +279,7 @@ public class InfoPanel extends JPanel{
     public JButton getStartButton() {
         return startButton;
     }
-    
-    public void setHealth(String health){
-        setHealthLabel(new JLabel("Health: " + health));
-    }
-
+   
     /**
      * @return the score
      */

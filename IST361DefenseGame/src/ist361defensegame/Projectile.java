@@ -36,28 +36,34 @@ public class Projectile extends MovingGamePiece {
         image = null;
         projScaled = null;
         try {
-            image = ImageIO.read(new File("alien2.png"));
+            image = ImageIO.read(new File("bullet3.png"));
             projScaled = image.getScaledInstance(25, 25, java.awt.Image.SCALE_SMOOTH);
         } catch (IOException ex) {
             System.out.println("caught");
         }
+        
+        this.setSpeed(10,10);
     }
     @Override
     public void update() {
-        int speed = 15;
+        
         int diffX = Math.abs(x - getEnemy().x);
         int diffY = Math.abs(y - getEnemy().y);
         //Depending on where enemy is the x and y will increment or decrement until it is equal
         if(x > getEnemy().x){  
-            x -= speed;  
+            //x -= speed;
+            super.moveLeft();
         } else if(x < getEnemy().x){   
-            x += speed;
+            //x += speed;
+            super.moveRight();
         }
 
         if(y > getEnemy().y){
-            y -= speed;
+            //y -= speed;
+            super.moveUp();
         } else if(y < getEnemy().y){            
-            y += speed;           
+            //y += speed;
+            super.moveDown();
         }
         
         //Offset for enemy's constant movement projectile x will never equal enemy.x

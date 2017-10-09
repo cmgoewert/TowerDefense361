@@ -101,6 +101,10 @@ public class GameController implements ActionListener{
         }       
     }
     
+    public int getCurrentLevel(){
+        return currentLevel;
+    }
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if(enemyCount < waveEnemyCount){
@@ -160,6 +164,7 @@ public class GameController implements ActionListener{
         //startFlag = false;
         waveOver = true;
         money += currentLevel * 200;
+        System.out.println("Current money: " + money);
         
     }
 
@@ -216,6 +221,7 @@ public class GameController implements ActionListener{
     }
     public void setMoney() {
             money = money - towerInfo[0];
+            System.out.println("Current money: " + money);
         }
     //TODO: Logic for when certain tower is selected
     class TowerListener implements ActionListener {

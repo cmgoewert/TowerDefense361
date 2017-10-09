@@ -85,9 +85,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         enemyPic1 = new File("alien2.png");
         enemyPic2 = new File("alien.png");
         enemyPic3 = new File("alien3.png");
-        towerImage1 = new ImageIcon("Tower_1.gif");
-        towerImage2 = new ImageIcon("Tower_2.gif");
-        towerImage3 = new ImageIcon("Tower_3.gif");
+        towerImage1 = new ImageIcon("tower1.png");
+        towerImage2 = new ImageIcon("tower2.png");
+        towerImage3 = new ImageIcon("tower3.png");
         
         
         theLayout = new GridLayout(12, 12);
@@ -117,7 +117,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                                 placeTower(theTile, towerImage3, getTowerInfo3());
 
                             } else {
-                                System.out.println("already has a tower!");
+                                System.out.println("Not enough money or already has a tower!");
                             }
 
                         }
@@ -127,7 +127,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             }
         }
         gameTimer = new Timer(1000 / 50, this);
-        projTimer = new Timer(50, this); //Change tower fire rate
+        projTimer = new Timer(400, this); //Change tower fire rate
         
         enemyTimer = new Timer(4000 / 50, this);
         enemyTimer.setDelay(4000);
@@ -208,9 +208,30 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                     parentCtrl.decrementHealth();
                     parentCtrl.setEnemies(enemies);
                 } else {
+                    System.out.println("Enemy"+i+" Health: "+ enemies.get(i).getHealth());
                     enemies.get(i).update();
                 }   
-            }  
+            }
+            
+            for(int i = 0; i < parentCtrl.getProjectiles().size(); i++) { 
+                
+                
+                parentCtrl.getProjectiles().get(i).update();
+                
+                
+                if(parentCtrl.getProjectiles().get(i).getFrame().intersects(parentCtrl.getProjectiles().get(i).getEnemy().getFrame())){
+                    parentCtrl.getProjectiles().get(i).getEnemy().decrementEnemyHealth(20);//parentCtrl.getProjectiles().get(i).getTower().getStrength());
+                   
+                    if(parentCtrl.getProjectiles().get(i).getEnemy().getHealth() < 0) {
+                        if(parentCtrl.getEnemies().size() != 0){
+                            parentCtrl.getEnemies().remove(0);
+                        }
+                        
+                      
+                    }
+                    parentCtrl.getProjectiles().remove(i);
+                }
+            }
 
             this.repaint();
             
@@ -221,23 +242,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         } else if (o == projTimer){
             parentCtrl.addProj();
            
-            for(int i = 0; i < parentCtrl.getProjectiles().size(); i++) { 
-                
-                
-                parentCtrl.getProjectiles().get(i).update();
-                
-                
-                if(parentCtrl.getProjectiles().get(i).getFrame().intersects(parentCtrl.getProjectiles().get(i).getEnemy().getFrame())){
-                    parentCtrl.getProjectiles().get(i).getEnemy().decrementEnemyHealth(5);//parentCtrl.getProjectiles().get(i).getTower().getStrength());
-                    
-                    System.out.println(parentCtrl.getProjectiles().get(i).getEnemy().getHealth());
-                    if(parentCtrl.getProjectiles().get(i).getEnemy().getHealth() == 0) {
-                        parentCtrl.getEnemies().remove(0);
-                      
-                    }
-                    parentCtrl.getProjectiles().remove(i);
-                }
-            }
+            
         }
         
         Object i = e.getSource();
