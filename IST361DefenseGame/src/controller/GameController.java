@@ -39,12 +39,14 @@ public class GameController implements ActionListener{
     private int money = 1000;
     private boolean startFlag = false;
     LinkedList<Enemy> enemies;
+    private String userName;
     
     private File enemyPic1;
     private File enemyPic2;
     private File enemyPic3;
     
-    public GameController(){
+    public GameController(String userName){
+        this.userName = userName;
         gameUI = new GameUI(this);
         gameUI.getInfoPanel().getStartButton().addActionListener(new StartButtonListener());
         gameUI.getInfoPanel().getTower1Button().addActionListener(new TowerListener());
@@ -89,6 +91,13 @@ public class GameController implements ActionListener{
 
     public void setTowerPlaceable(boolean towerPlaceable) {
         this.towerPlaceable = towerPlaceable;
+    }
+
+    /**
+     * @return the userName
+     */
+    public String getUserName() {
+        return userName;
     }
     
     class StartButtonListener implements ActionListener {

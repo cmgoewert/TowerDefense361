@@ -20,7 +20,7 @@ public class NavigationController {
     }
     //implement userName
     public void startGame(String userName){
-        GameController gc = new GameController();
+        GameController gc = new GameController(userName);
         theMainMenu.setVisible(false);
     }
     

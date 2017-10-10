@@ -37,7 +37,9 @@ public class GameUI extends JFrame{
     private void initComponenets() {
         theGameBoard = new GameBoardPanel(gameCtrl);
         //getTheGameBoard().setSize(600,600);
-        infoPanel = new InfoPanel();
+        
+        infoPanel = new InfoPanel(gameCtrl.getUserName());
+        
         infoPanel.setPreferredSize(new Dimension(180,604));
         theGameBoard.setPreferredSize(new Dimension(600,600));
         //infoPanel.setSize(150,100);

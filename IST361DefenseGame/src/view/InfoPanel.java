@@ -35,9 +35,11 @@ public class InfoPanel extends JPanel{
     private int score;
     private int health;
     private int money;
+    private String userName;
    
     
-    public InfoPanel(){
+    public InfoPanel(String userName){
+        this.userName = userName;
         initComponents();
     }
     
@@ -52,7 +54,7 @@ public class InfoPanel extends JPanel{
         moneyLabel = new JLabel();
         moneyLabel.setPreferredSize(new Dimension(100,20));
         setMoneyLabel(1000);
-        setNameLabel(new JLabel("Name: "));
+        setNameLabel(new JLabel("Name: " + userName));
         setEmptyLabel(new JLabel(" "));
         setScoreLabel(new JLabel("Score: " + getScore()));        
         //setHealthLabel(new JLabel("Health: " + getHealth()));
@@ -69,45 +71,45 @@ public class InfoPanel extends JPanel{
         c.gridx = 0;
         c.gridy = 0;
         this.add(getNameLabel(), c);
-        c.gridx = 1;
-        c.gridy = 0;
+        c.gridx = 0;
+        c.gridy = 1;
         this.add(getScoreLabel(), c);
         c.gridx = 0;
-        c.gridy = 1;
-        this.add(getMoneyLabel(), c);
-        c.gridx = 1;
-        c.gridy = 1;
-        this.add(healthLabel, c);
-        c.gridx = 0;
         c.gridy = 2;
-        this.add(getDifficultyLabel(), c);
+        this.add(getMoneyLabel(), c);
         c.gridx = 0;
         c.gridy = 3;
+        this.add(healthLabel, c);
+        c.gridx = 0;
+        c.gridy = 4;
+        this.add(getDifficultyLabel(), c);
+        c.gridx = 0;
+        c.gridy = 5;
         this.add(getEmptyLabel(),c);
         c.gridx = 0;
-        c.gridy = 4;
+        c.gridy = 6;
         this.add(getTower1Label(), c);
-        c.gridx = 1;
-        c.gridy = 4;
-        this.add(getTower1Button(), c);
-        c.gridx = 0;
-        c.gridy = 5;
-        this.add(getTower2Label(), c);
-        c.gridx = 1;
-        c.gridy = 5;
-        this.add(getTower2Button(), c);
-        c.gridx = 0;
-        c.gridy = 6;
-        this.add(getTower3Label(), c);
-        c.gridx = 1;
-        c.gridy = 6;
-        this.add(getTower3Button(), c);
         c.gridx = 0;
         c.gridy = 7;
+        this.add(getTower1Button(), c);
+        c.gridx = 0;
+        c.gridy = 8;
+        this.add(getTower2Label(), c);
+        c.gridx = 0;
+        c.gridy = 9;
+        this.add(getTower2Button(), c);
+        c.gridx = 0;
+        c.gridy = 10;
+        this.add(getTower3Label(), c);
+        c.gridx = 0;
+        c.gridy = 11;
+        this.add(getTower3Button(), c);
+        c.gridx = 0;
+        c.gridy = 12;
         this.add(getEmptyLabel(),c);
         c.gridx = 0;
         c.gridwidth = 2;   
-        c.gridy = 8;
+        c.gridy = 13;
         this.add(getStartButton(), c);
     }
 
