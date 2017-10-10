@@ -36,7 +36,7 @@ public class GameController implements ActionListener{
     private int waveEnemyCount;
     private int currentLevel;
     private int lives;
-    private int money = 200;
+    private int money = 1000;
     private boolean startFlag = false;
     LinkedList<Enemy> enemies;
     
@@ -125,9 +125,7 @@ public class GameController implements ActionListener{
             gameUI.repaint();
         }
         System.out.println("Lives remaining: " + lives);
-        
-        //gameUI.getInfoPanel().getHealthLabel().setText("Health: " + lives); //Weird glitch
-        //infopanel needs to be updated here with lives left
+        gameUI.getInfoPanel().setHealthLabel(lives);
     }
     
     public void addProj() {
@@ -164,7 +162,7 @@ public class GameController implements ActionListener{
         //startFlag = false;
         waveOver = true;
         money += currentLevel * 200;
-        System.out.println("Current money: " + money);
+        gameUI.getInfoPanel().setMoneyLabel(money); 
         
     }
 
@@ -221,7 +219,7 @@ public class GameController implements ActionListener{
     }
     public void setMoney() {
             money = money - towerInfo[0];
-            System.out.println("Current money: " + money);
+            gameUI.getInfoPanel().setMoneyLabel(money); 
         }
     //TODO: Logic for when certain tower is selected
     class TowerListener implements ActionListener {
@@ -232,7 +230,7 @@ public class GameController implements ActionListener{
                 if (money >= towerInfo[0]) {
                     setCurrentTower(currentTower.getTowerOne());
                     setTowerPlaceable(true);
-                    //gameUI.getInfoPanel().setMoneyLabel(money); --- not sure why this isn't working
+                    
                 } else {
                     setTowerPlaceable(false);
                 } 

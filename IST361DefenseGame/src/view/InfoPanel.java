@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -46,20 +47,20 @@ public class InfoPanel extends JPanel{
         c.anchor = GridBagConstraints.WEST;
         c.insets = new Insets(3,3,3,3);
         setScore(0);
-        setHealth(20);
-        
+
         
         moneyLabel = new JLabel();
-        setMoneyLabel(200);
+        moneyLabel.setPreferredSize(new Dimension(100,20));
+        setMoneyLabel(1000);
         setNameLabel(new JLabel("Name: "));
         setEmptyLabel(new JLabel(" "));
-        setScoreLabel(new JLabel("Score: " + getScore()));        
-        //setHealthLabel(new JLabel("Health: " + getHealth()));
-        healthLabel = new JLabel(Integer.toString(getHealth()));
+        setScoreLabel(new JLabel("Score: " + getScore()));
+        healthLabel = new JLabel();        
+        setHealthLabel(20);
         setDifficultyLabel(new JLabel("Difficulty: "));
-        setTower1Label(new JLabel("Tower 1: "));
-        setTower2Label(new JLabel("Tower 2: "));
-        setTower3Label(new JLabel("Tower 3: "));
+        setTower1Label(new JLabel("Tower 1 ($100): "));
+        setTower2Label(new JLabel("Tower 2 ($150): "));
+        setTower3Label(new JLabel("Tower 3 ($200): "));
         setTower1Button(new JButton("Tower1"));
         setTower2Button(new JButton("Tower2"));
         setTower3Button(new JButton("Tower3"));
@@ -157,15 +158,14 @@ public class InfoPanel extends JPanel{
      * @return the healthLabel
      */
     public JLabel getHealthLabel() {
-        
         return healthLabel;
     }
 
     /**
      * @param healthLabel the healthLabel to set
      */
-    public void setHealthLabel(JLabel healthLabel) {
-        this.healthLabel = healthLabel;
+    public void setHealthLabel(int health) {
+        healthLabel.setText("Health: " + String.valueOf(health));
     }
 
     /**
