@@ -124,7 +124,6 @@ public class GameController implements ActionListener{
             gameUI.revalidate();
             gameUI.repaint();
         }
-        System.out.println("Lives remaining: " + lives);
         gameUI.getInfoPanel().setHealthLabel(lives);
     }
     
@@ -205,18 +204,7 @@ public class GameController implements ActionListener{
         }
     
     }
-    
-    //TODO: Logic for when it increases when but is killed, decreses when
-    // tower is placed
-    class MoneyListener implements ActionListener {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            //This infopanel will problaby need to be GameUI.getInfoPanel instead
-            infoPanel.getMoneyLabel().setText("Test");
-        }
-    
-    }
+ 
     public void setMoney() {
             money = money - towerInfo[0];
             gameUI.getInfoPanel().setMoneyLabel(money); 

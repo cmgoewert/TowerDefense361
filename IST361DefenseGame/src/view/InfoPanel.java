@@ -106,7 +106,6 @@ public class InfoPanel extends JPanel{
         c.gridy = 7;
         this.add(getEmptyLabel(),c);
         c.gridx = 0;
-        c.fill = GridBagConstraints.HORIZONTAL;
         c.gridwidth = 2;   
         c.gridy = 8;
         this.add(getStartButton(), c);

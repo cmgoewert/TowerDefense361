@@ -234,7 +234,10 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             }
 
             this.repaint();
-            
+            /*the logic below is resulting in end Wave being called as soon as the start button is pressed
+            since enemies is empty for a brief amount of time and the wave is not over
+            so true && !false = true && true = true
+            */      
             if(enemies.isEmpty() && !parentCtrl.getWaveOver()){
                 parentCtrl.endWave();
             }
@@ -277,7 +280,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         parentCtrl.getTowerTiles().add(tower);
         parentCtrl.setTowerPlaceable(false);
         parentCtrl.setMoney();
-        System.out.println(parentCtrl.getTowerTiles().get(parentCtrl.getTowerTiles().size() - 1).getLocation());
     }
 
     public Timer getGameTimer() {
