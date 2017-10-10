@@ -25,4 +25,9 @@ public class Score {
     public String getUsername(){
         return this.username;
     }
+    
+    @Override
+    public String toString(){
+        return username + "    " + score;
+    }
 }
