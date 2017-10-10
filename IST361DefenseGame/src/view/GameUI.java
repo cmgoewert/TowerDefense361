@@ -46,6 +46,7 @@ public class GameUI extends JFrame{
         this.add(getInfoPanel(), BorderLayout.EAST);
         this.add(getTheGameBoard(), BorderLayout.CENTER);
         this.pack();
+        this.setLocationRelativeTo(null);
     }
 
     /**
