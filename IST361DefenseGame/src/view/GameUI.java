@@ -50,7 +50,7 @@ public class GameUI extends JFrame{
         this.add(getTheGameBoard(), BorderLayout.CENTER);
         this.pack();
         this.setLocationRelativeTo(null);
-        this.setIconImage(new ImageIcon("alien.png").getImage());
+        this.setIconImage(new ImageIcon("alienIcon.png").getImage());
     }
 
     /**
