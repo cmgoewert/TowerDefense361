@@ -26,7 +26,7 @@ public class GameUI extends JFrame{
     public GameUI (GameController gameCtrl) {
         this.gameCtrl = gameCtrl;
         this.setVisible(true);
-        this.setBounds(0, 0, 750, 600);
+        //this.setBounds(0, 0, 750, 600);
         this.setResizable(false);
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -38,7 +38,7 @@ public class GameUI extends JFrame{
         theGameBoard = new GameBoardPanel(gameCtrl);
         //getTheGameBoard().setSize(600,600);
         infoPanel = new InfoPanel();
-        infoPanel.setPreferredSize(new Dimension(160,604));
+        infoPanel.setPreferredSize(new Dimension(180,604));
         theGameBoard.setPreferredSize(new Dimension(600,600));
         //infoPanel.setSize(150,100);
         
