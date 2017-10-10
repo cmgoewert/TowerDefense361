@@ -230,9 +230,11 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                 if(parentCtrl.getProjectiles().get(i).getFrame().intersects(parentCtrl.getProjectiles().get(i).getEnemy().getFrame())){
                     parentCtrl.getProjectiles().get(i).getEnemy().decrementEnemyHealth(20);//parentCtrl.getProjectiles().get(i).getTower().getStrength());
                    
-                    if(parentCtrl.getProjectiles().get(i).getEnemy().getHealth() < 0) {
+                    System.out.println(parentCtrl.getProjectiles().get(i).getEnemy().getHealth());
+                    if(parentCtrl.getProjectiles().get(i).getEnemy().getHealth() == 0) {
                         if(parentCtrl.getEnemies().size() != 0){
                             parentCtrl.getEnemies().remove(0);
+                            System.out.println("called remove enemy");
                         }
                         
                       
