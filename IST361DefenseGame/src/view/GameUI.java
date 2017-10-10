@@ -8,6 +8,7 @@ package view;
 import controller.GameController;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -35,8 +36,10 @@ public class GameUI extends JFrame{
   
     private void initComponenets() {
         theGameBoard = new GameBoardPanel(gameCtrl);
-        getTheGameBoard().setSize(600,600);
+        //getTheGameBoard().setSize(600,600);
         infoPanel = new InfoPanel();
+        infoPanel.setPreferredSize(new Dimension(160,604));
+        theGameBoard.setPreferredSize(new Dimension(600,600));
         //infoPanel.setSize(150,100);
         
         this.setLayout(new BorderLayout());
@@ -50,6 +53,10 @@ public class GameUI extends JFrame{
      */
     public InfoPanel getInfoPanel() {
         return infoPanel;
+    }
+    
+    public GameBoardPanel getGamePanel() {
+        return getTheGameBoard();
     }
     
     public void gameOver(int level){

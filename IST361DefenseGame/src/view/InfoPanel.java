@@ -54,9 +54,9 @@ public class InfoPanel extends JPanel{
         setMoneyLabel(1000);
         setNameLabel(new JLabel("Name: "));
         setEmptyLabel(new JLabel(" "));
-        setScoreLabel(new JLabel("Score: " + getScore()));
-        healthLabel = new JLabel();        
-        setHealthLabel(20);
+        setScoreLabel(new JLabel("Score: " + getScore()));        
+        //setHealthLabel(new JLabel("Health: " + getHealth()));
+        healthLabel = new JLabel("Health: " + Integer.toString(getHealth()));
         setDifficultyLabel(new JLabel("Difficulty: "));
         setTower1Label(new JLabel("Tower 1 ($100): "));
         setTower2Label(new JLabel("Tower 2 ($150): "));

@@ -51,6 +51,9 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     private Timer projTimer;
     int countThis = 0;
     Tower tower;
+    int positionCount = 0;
+    boolean reordered = false;
+    ArrayList<JLabel> boardTiles = null;
     
     //Tower and Projectile Stuff
     ArrayList<GameTile> towerTiles = new ArrayList<>();
@@ -60,6 +63,7 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     private int[] towerInfo1 = {100,2,100};
     private int[] towerInfo2 = {150,1,150};
     private int[] towerInfo3 = {300,1,200};
+    Component original = null;
     
     private File enemyPic1;
     private File enemyPic2;
@@ -75,7 +79,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
     
     public GameBoardPanel(GameController theCtrl){
         parentCtrl = theCtrl;
-        initComponents();        
+        initComponents();
+        //original = this.getComponent(143);
     }
     
     private void initComponents(){
@@ -92,19 +97,18 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         
         theLayout = new GridLayout(12, 12);
         this.setLayout(theLayout);
-        JLabel[][] boardSquares = new JLabel[12][12];
+        boardTiles = new ArrayList<JLabel>();
         int counter = 0;
-        for (int i = 0; i < 12; i++) {
-            for (int j = 0; j < 12; j++) {
-                isPresent = exists(counter);
-                counter++;
-                if (isPresent) {
-                    boardSquares[i][j] = new GameTile(parentCtrl, true);
-                } else {
-                    final GameTile theTile = new GameTile(parentCtrl, false);
-                    boardSquares[i][j] = new GameTile(parentCtrl, false);
-                    boardSquares[i][j] = theTile;
-                    boardSquares[i][j].addMouseListener(new MouseAdapter() {
+        
+        for (counter = 0; counter < 144; counter++){
+            isPresent = exists(counter);
+            if(isPresent){
+                boardTiles.add(new GameTile(parentCtrl, true));
+            }
+            else {
+                boardTiles.add(new GameTile(parentCtrl, false));
+                GameTile theTile = (GameTile) boardTiles.get(counter);
+                boardTiles.get(counter).addMouseListener(new MouseAdapter() {
                         @Override
                         public void mouseClicked(MouseEvent e) {
                            if (!theTile.getHasTower() && parentCtrl.getCurrentTower() == tower.getTowerOne() && parentCtrl.isTowerPlaceable()) {
@@ -122,10 +126,10 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
 
                         }
                     });
-                }
-                this.add(boardSquares[i][j]);
             }
+            this.add(boardTiles.get(counter));
         }
+
         gameTimer = new Timer(1000 / 50, this);
         projTimer = new Timer(400, this); //Change tower fire rate
         
@@ -207,7 +211,11 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
                     System.out.println("removed enemy");
                     parentCtrl.decrementHealth();
                     parentCtrl.setEnemies(enemies);
+                    reordered = true;
                 } else {
+//                    if(reordered){
+//                        System.out.println(original.equals(this.getComponent(143)));
+//                    }
                     System.out.println("Enemy"+i+" Health: "+ enemies.get(i).getHealth());
                     enemies.get(i).update();
                 }   
@@ -234,10 +242,8 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
             }
 
             this.repaint();
-            /*the logic below is resulting in end Wave being called as soon as the start button is pressed
-            since enemies is empty for a brief amount of time and the wave is not over
-            so true && !false = true && true = true
-            */      
+            this.revalidate();
+            
             if(enemies.isEmpty() && !parentCtrl.getWaveOver()){
                 parentCtrl.endWave();
             }
@@ -247,15 +253,6 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
            
             
         }
-        
-        Object i = e.getSource();
-        
-         // TODO: When the Enemy's timer fires, create a new Enemy that will persue the player!
-        if(i == enemyTimer){
-        
-            
-            //155(path 1),175 (path 0),195 (path 2) are the starting positions
-        }  
     }
 
     private static boolean exists(int count){
@@ -275,8 +272,15 @@ public class GameBoardPanel extends JPanel  implements ActionListener{
         tower.setIcon(towerImage);
         tower.setSize(50, 50);
         tower.setLocation(theTile.getLocation());
+        int location = 0;
+        for(int i = 0; i < boardTiles.size(); i++){
+            if(theTile.equals((GameTile) boardTiles.get(i))){
+                location = i;
+            }
+        }
         remove(theTile);
-        add(tower);
+        add(tower, location);
+        
         parentCtrl.getTowerTiles().add(tower);
         parentCtrl.setTowerPlaceable(false);
         parentCtrl.setMoney();

@@ -124,7 +124,12 @@ public class GameController implements ActionListener{
             gameUI.revalidate();
             gameUI.repaint();
         }
-        gameUI.getInfoPanel().setHealthLabel(lives);
+        System.out.println("Lives remaining: " + lives);
+        
+        gameUI.getInfoPanel().getHealthLabel().setText("Health: " + lives); //Weird glitch
+        System.out.println(gameUI.getGamePanel().getComponentCount());
+        gameUI.getGamePanel().repaint();
+        gameUI.getGamePanel().revalidate();
     }
     
     public void addProj() {
@@ -161,7 +166,8 @@ public class GameController implements ActionListener{
         //startFlag = false;
         waveOver = true;
         money += currentLevel * 200;
-        gameUI.getInfoPanel().setMoneyLabel(money); 
+        gameUI.getInfoPanel().setMoneyLabel(money);
+        System.out.println("Current money: " + money);
         
     }
 
@@ -207,7 +213,9 @@ public class GameController implements ActionListener{
  
     public void setMoney() {
             money = money - towerInfo[0];
-            gameUI.getInfoPanel().setMoneyLabel(money); 
+
+            gameUI.getInfoPanel().setMoneyLabel(money);
+            System.out.println("Current money: " + money);
         }
     //TODO: Logic for when certain tower is selected
     class TowerListener implements ActionListener {
